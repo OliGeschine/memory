@@ -1,0 +1,55 @@
+.startscreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background-color: #F0EA6E;
+        height: 98px;
+        width: 250px;
+        color: black;
+        margin-top: 40px;
+        cursor: pointer;
+
+        &--play {
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Red Rose', sans-serif;
+        }
+
+        .controller__icon {
+            transition: all 300ms ease-in-out;
+        }
+
+        .startscreen__arrow--hover {
+            display: none;
+        }
+    }
+
+    &__btn:hover {
+        .controller__icon {
+            transform: scale(1.2) rotate(-30deg);
+        }
+
+        .startscreen__arrow {
+            display: none;
+        }
+
+        .startscreen__arrow--hover {
+            display: block;
+        }
+    }
+
+    &__img {
+        position: absolute;
+        bottom: 10px;
+        left: -10px;
+    }
+}

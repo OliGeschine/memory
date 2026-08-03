@@ -1,0 +1,29 @@
+@use './components/main';
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #303131;
+    color: #fff;
+    margin: 0;
+    font-family: 'Almarai', sans-serif;
+}
+
+.dNone {
+    display: none;
+}
+
+h1 {
+    font-size: 9rem;
+    margin: 0;
+    font-family: 'Red Rose', sans-serif;
+}
+
+h2 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 400;
+}
