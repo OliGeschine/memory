@@ -7,7 +7,7 @@ export function renderStartscreenLayout(): string {
             <h1>Ready to play?</h1>
         </div>
 
-        <div class="startscreen__btn">
+        <div id="startscreen__btn" class="startscreen__btn">
             <img class="controller__icon" src="./assets/icons/controller.svg" />
             <span class="startscreen__btn--play">Play</span>
             <img class="startscreen__arrow" src="./assets/icons/arrow_right.svg" />

@@ -6,7 +6,6 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    background-color: #303131;
     color: #fff;
     margin: 0;
     font-family: 'Almarai', sans-serif;
@@ -29,6 +28,15 @@ h2 {
 }
 
 h3 {
+    color: #303131;
     font-size: 3.375rem;
+    margin: 0;
+    font-family: 'Red Rose', sans-serif;
+}
+
+h4 {
+    color: #303131;
+    font-size: 1.5rem;
+    margin: 0;
     font-family: 'Red Rose', sans-serif;
 }

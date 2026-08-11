@@ -5,4 +5,23 @@
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    background-color: white;
+
+    &__headline {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    &__overview {
+        display: flex;
+        flex-direction: column;
+        gap: 3.375rem;
+    }
+
+    &__choises {
+        display: flex;
+        gap: 0.5rem;
+    }
 }
