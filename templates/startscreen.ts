@@ -1,0 +1,20 @@
+export function renderStartscreenLayout(): string {
+    return `
+   <section class="startscreen">
+
+        <div class="headline">
+            <h2>It's play time.</h2>
+            <h1>Ready to play?</h1>
+        </div>
+
+        <div class="startscreen__btn">
+            <img class="controller__icon" src="./assets/icons/controller.svg" />
+            <span class="startscreen__btn--play">Play</span>
+            <img class="startscreen__arrow" src="./assets/icons/arrow_right.svg" />
+            <img class="startscreen__arrow startscreen__arrow--hover" src="./assets/icons/arrow_right_active.svg" />
+        </div>
+
+        <img class="startscreen__img" src="./assets/imgs/controller.svg" />
+
+    </section>`;
+}

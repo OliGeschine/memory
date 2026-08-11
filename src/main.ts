@@ -1,15 +1,19 @@
 import '../scss/main.scss';
-
-init()
+import { renderStartscreenLayout } from '../templates/startscreen';
+import { renderSettingsLayout } from '../templates/settings';
+import { renderGameLayout, flippAnimation } from '../templates/game';
 
 function init() {
-    const fieldRef = document.getElementById('field');
-    if (fieldRef) {
-        fieldRef.addEventListener("click", e => {
-            const card = (e.target as HTMLElement).closest('.card') as HTMLButtonElement;
-            if (card) {
-                card.classList.toggle('is-flipped');
-            }
-        })
+    getStartscreen();
+}
+
+// Init beim Laden der Seite
+window.addEventListener('DOMContentLoaded', init);
+
+function getStartscreen() {
+    const main = document.querySelector('main');
+    if (main) {
+        main.innerHTML = renderStartscreenLayout();
     }
 }
+
