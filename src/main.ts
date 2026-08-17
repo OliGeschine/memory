@@ -1,45 +1,46 @@
-import '../scss/main.scss';
-import { renderStartscreenLayout } from '../templates/startscreen';
-import { renderSettingsLayout } from '../templates/settings';
-import { renderGameLayout, flippAnimation } from '../templates/game';
+import "../scss/main.scss";
+import { renderStartscreenLayout } from "../templates/startscreen";
+import { getGameThemeImage, renderSettingsLayout } from "../templates/settings";
+import { renderGameLayout, flippAnimation } from "../templates/game";
 
 // ========== Initialisierung ==========
 function init() {
-    showStartscreen();
+  showStartscreen();
 }
 
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener("DOMContentLoaded", init);
 
 // ========== Render-Funktionen (nur für das Rendering verantwortlich) ==========
 function renderInMain(html: string) {
-    const main = document.querySelector('main');
-    if (main) {
-        main.innerHTML = html;
-    }
+  const main = document.querySelector("main");
+  if (main) {
+    main.innerHTML = html;
+  }
 }
 
 // ========== View-Funktionen (Rendering + Event-Listener Setup) ==========
 function showStartscreen() {
-    renderInMain(renderStartscreenLayout());
-    attachStartscreenListeners();
+  renderInMain(renderStartscreenLayout());
+  attachStartscreenListeners();
 }
 
 function showSettings() {
-    renderInMain(renderSettingsLayout());
-    attachSettingsListeners();
+  renderInMain(renderSettingsLayout());
+  attachSettingsListeners();
+  getGameThemeImage();
 }
 
 // ========== Event-Listener Setup ==========
 function attachStartscreenListeners() {
-    const startBtn = document.querySelector('.startscreen__btn');
-    if (startBtn) {
-        startBtn.addEventListener('click', showSettings);
-    }
+  const startBtn = document.querySelector(".startscreen__btn");
+  if (startBtn) {
+    startBtn.addEventListener("click", showSettings);
+  }
 }
 
 function attachSettingsListeners() {
-    const returnBtn = document.querySelector('#return_btn');
-    if (returnBtn) {
-        returnBtn.addEventListener('click', showStartscreen);
-    }
+  const returnBtn = document.querySelector("#return_btn");
+  if (returnBtn) {
+    returnBtn.addEventListener("click", showStartscreen);
+  }
 }

@@ -8,13 +8,13 @@ export function renderStartscreenLayout(): string {
         </div>
 
         <div id="startscreen__btn" class="startscreen__btn">
-            <img class="controller__icon" src="./assets/icons/controller.svg" />
+            <img class="controller__icon" src="dist/assets/icons/controller.svg" />
             <span class="startscreen__btn--play">Play</span>
-            <img class="startscreen__arrow" src="./assets/icons/arrow_right.svg" />
-            <img class="startscreen__arrow startscreen__arrow--hover" src="./assets/icons/arrow_right_active.svg" />
+            <img class="startscreen__arrow" src="dist/assets/icons/arrow_right.svg" />
+            <img class="startscreen__arrow startscreen__arrow--hover" src="dist/assets/icons/arrow_right_active.svg" />
         </div>
 
-        <img class="startscreen__img" src="./assets/imgs/controller.svg" />
+        <img class="startscreen__img" src="dist/assets/imgs/controller.svg" />
 
     </section>`;
 }
