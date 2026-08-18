@@ -17,6 +17,7 @@ let themes = [
   },
 ];
 
+
 export function renderSettingsLayout(): string {
   return `
     <section class="settings">
@@ -36,20 +37,24 @@ export function renderSettingsLayout(): string {
                 </div>
                 <div class="settings__choices--themes">
                     <div class="settings__choices__list">
-                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <div class="settings__choices__circle"></div>
                         <span data-theme="0">Code vibes theme</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
-                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <div class="settings__choices__circle"></div>
                         <span data-theme="1">Gaming theme</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
-                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <div class="settings__choices__circle"></div>
                         <span data-theme="2">DA Projects theme</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
-                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <div class="settings__choices__circle"></div>
                         <span data-theme="3">Foods theme</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                 </div>
             </div>
@@ -60,12 +65,14 @@ export function renderSettingsLayout(): string {
                 </div>
                 <div class="settings__choices--players">
                     <div class="settings__choices__list">
-                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <div class="settings__choices__circle"></div>
                         <span>Blue</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
-                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <div class="settings__choices__circle"></div>
                         <span>Orange</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                 </div>
             </div>
@@ -78,20 +85,36 @@ export function renderSettingsLayout(): string {
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
                         <span>16 cards</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
                         <span>24 cards</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
                         <span>36 cards</span>
+                        <div class="settings__choices__marker"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="settings__theme">
-            <img class="settings__theme--img" id="theme_image" src="" alt="selected game theme">
+        <div class="settings__selection">
+            <div class="settings__theme">
+                <img class="settings__theme--img" id="theme_image" src="" alt="selected game theme">
+            </div>
+            <div class="settings__selection__overview">
+                <span id="theme_selection" class="settings__selection__overview--theme">Theme</span>
+                <img class="settings__selection__overview--theme--img" src="dist/assets/icons/overview_line.svg" alt="selected game theme">
+                <span id="player_selection" class="settings__selection__overview--player">Player</span>
+                <img class="settings__selection__overview--player--img" src="dist/assets/icons/overview_line.svg" alt="selected player">
+                <span id="board_selection" class="settings__selection__overview--board">Board</span>
+                <div>
+                    <img>
+                    <span>Start</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -121,4 +144,17 @@ export function getGameThemeImage() {
 export function setDefaultImg(){
     const themeImage = document.querySelector("#theme_image");
     themeImage!.setAttribute("src", `dist/assets/imgs/${themes[0].image}`);
+}
+
+export function getPlayerSelection() {
+const playerSelection = document.querySelector("#player_selection");
+const players = document.querySelectorAll(
+  ".settings__choices--players .settings__choices__list"
+);
+players.forEach((player) => {
+  player.addEventListener("click", () => {
+    playerSelection!.textContent =
+      player.querySelector("span")!.textContent;
+  });
+});
 }

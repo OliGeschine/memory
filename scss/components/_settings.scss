@@ -51,6 +51,9 @@
       .settings__choices__circle{
         background-image: url("/assets/icons/choice_circle_active.svg");
       }
+      .settings__choices__marker{
+        background-image: url("/assets/icons/choice_marker.svg");
+      }
     }
     }
 
@@ -88,6 +91,39 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
+    }
+
+    &__marker {
+      width: 2rem;
+      height: 1rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+
+  &__selection {
+    display: flex;
+    flex-direction: column;
+    color: #303131;
+    gap: 1rem;
+
+    &__overview {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      &--theme {
+        font-size: 1.5rem;
+      }
+
+      &--player {
+        font-size: 1.5rem;
+      }
+
+      &--board {
+        font-size: 1.5rem;
+      }
     }
   }
 }
