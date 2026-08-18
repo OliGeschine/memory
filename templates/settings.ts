@@ -35,36 +35,63 @@ export function renderSettingsLayout(): string {
                     <h4> Game themes</h4>
                 </div>
                 <div class="settings__choices--themes">
-                    <span data-theme="0">Code vibes theme</span>
-                    <span data-theme="1">Gaming theme</span>
-                    <span data-theme="2">DA Projects theme</span>
-                    <span data-theme="3">Foods theme</span>
+                    <div class="settings__choices__list">
+                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <span data-theme="0">Code vibes theme</span>
+                    </div>
+                    <div class="settings__choices__list">
+                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <span data-theme="1">Gaming theme</span>
+                    </div>
+                    <div class="settings__choices__list">
+                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <span data-theme="2">DA Projects theme</span>
+                    </div>
+                    <div class="settings__choices__list">
+                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <span data-theme="3">Foods theme</span>
+                    </div>
                 </div>
             </div>
+            <div class="settings__choices">
                 <div class="settings__choices--headline">
                     <img class="" src="dist/assets/icons/chess_pawn.svg"/>
                     <h4>Choose player</h4>
                 </div>
-            <div class="settings__choices">
                 <div class="settings__choices--players">
-                    <span>Blue</span>
-                    <span>Orange</span>
+                    <div class="settings__choices__list">
+                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <span>Blue</span>
+                    </div>
+                    <div class="settings__choices__list">
+                        <img class="settings__choices__circle" src="dist/assets/icons/choice_circle.svg"/>
+                        <span>Orange</span>
+                    </div>
                 </div>
             </div>
+            <div class="settings__choices">
                 <div class="settings__choices--headline">
                     <img class="" src="dist/assets/icons/board.svg"/>
                     <h4>Board size</h4>
                 </div>
-            <div class="settings__choices">
                 <div class="settings__choices--boards">
-                    <span>16 cards</span>
-                    <span>24 cards</span>
-                    <span>36 cards</span>
+                    <div class="settings__choices__list">
+                        <div class="settings__choices__circle"></div>
+                        <span>16 cards</span>
+                    </div>
+                    <div class="settings__choices__list">
+                        <div class="settings__choices__circle"></div>
+                        <span>24 cards</span>
+                    </div>
+                    <div class="settings__choices__list">
+                        <div class="settings__choices__circle"></div>
+                        <span>36 cards</span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="settings__theme">
-        <img class="settings__theme--img" id="theme_image" src="" alt="selected game theme">
+            <img class="settings__theme--img" id="theme_image" src="" alt="selected game theme">
         </div>
     </div>
 
@@ -89,4 +116,9 @@ export function getGameThemeImage() {
       );
     });
   });
+}
+
+export function setDefaultImg(){
+    const themeImage = document.querySelector("#theme_image");
+    themeImage!.setAttribute("src", `dist/assets/imgs/${themes[0].image}`);
 }

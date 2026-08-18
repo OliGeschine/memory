@@ -1,6 +1,6 @@
 import "../scss/main.scss";
 import { renderStartscreenLayout } from "../templates/startscreen";
-import { getGameThemeImage, renderSettingsLayout } from "../templates/settings";
+import { getGameThemeImage, renderSettingsLayout, setDefaultImg } from "../templates/settings";
 import { renderGameLayout, flippAnimation } from "../templates/game";
 
 // ========== Initialisierung ==========
@@ -28,6 +28,7 @@ function showSettings() {
   renderInMain(renderSettingsLayout());
   attachSettingsListeners();
   getGameThemeImage();
+  setDefaultImg();
 }
 
 // ========== Event-Listener Setup ==========
