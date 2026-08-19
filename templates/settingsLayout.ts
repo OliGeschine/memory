@@ -1,23 +1,3 @@
-let themes = [
-  {
-    name: "Code vibes",
-    image: "code_vibes_theme.svg",
-  },
-  {
-    name: "Gaming",
-    image: "gaming_theme.svg",
-  },
-  {
-    name: "DA Projects",
-    image: "da_projects_theme.svg",
-  },
-  {
-    name: "Foods",
-    image: "foods_theme.svg",
-  },
-];
-
-
 export function renderSettingsLayout(): string {
   return `
     <section class="settings">
@@ -110,8 +90,8 @@ export function renderSettingsLayout(): string {
                 <span id="player_selection" class="settings__selection__overview--player">Player</span>
                 <img class="settings__selection__overview--player--img" src="dist/assets/icons/overview_line.svg" alt="selected player">
                 <span id="board_selection" class="settings__selection__overview--board">Board</span>
-                <div>
-                    <img>
+                <div class="settings__selection__overview--btn">
+                    <img src="dist/assets/icons/play_icon.svg" alt="game">
                     <span>Start</span>
                 </div>
             </div>
@@ -120,41 +100,4 @@ export function renderSettingsLayout(): string {
 
     </section>
     `;
-}
-
-export function getGameThemeImage() {
-  const themeElements = document.querySelectorAll(
-    ".settings__choices--themes span"
-  );
-
-  const themeImage = document.querySelector("#theme_image");
-
-  themeElements.forEach((theme) => {
-    theme.addEventListener("click", () => {
-      const themeIndex = Number(theme.getAttribute("data-theme"));
-
-      themeImage!.setAttribute(
-        "src",
-        `dist/assets/imgs/${themes[themeIndex].image}`
-      );
-    });
-  });
-}
-
-export function setDefaultImg(){
-    const themeImage = document.querySelector("#theme_image");
-    themeImage!.setAttribute("src", `dist/assets/imgs/${themes[0].image}`);
-}
-
-export function getPlayerSelection() {
-const playerSelection = document.querySelector("#player_selection");
-const players = document.querySelectorAll(
-  ".settings__choices--players .settings__choices__list"
-);
-players.forEach((player) => {
-  player.addEventListener("click", () => {
-    playerSelection!.textContent =
-      player.querySelector("span")!.textContent;
-  });
-});
 }

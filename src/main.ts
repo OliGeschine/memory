@@ -1,7 +1,11 @@
 import "../scss/main.scss";
-import { renderStartscreenLayout } from "../templates/startscreen";
-import { getGameThemeImage, renderSettingsLayout, setDefaultImg, getPlayerSelection } from "../templates/settings";
-import { renderGameLayout, flippAnimation } from "../templates/game";
+
+import { renderStartscreenLayout } from "../templates/startscreenLayout";
+import { renderSettingsLayout } from "../templates/settingsLayout";
+import { renderGameLayout } from "../templates/gameLayout";
+
+import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection } from "./settings";
+import { flippAnimation } from "./game";
 
 // ========== Initialisierung ==========
 function init() {
@@ -30,6 +34,8 @@ function showSettings() {
   getGameThemeImage();
   setDefaultImg();
   getPlayerSelection();
+  getBoardSelection();
+  getThemeSelection();
 }
 
 // ========== Event-Listener Setup ==========
