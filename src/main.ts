@@ -5,7 +5,7 @@ import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
 import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection } from "./settings";
-import { flippAnimation } from "./game";
+import { flippAnimation, setCurrentPlayerImage, exitGame } from "./game";
 
 // ========== Initialisierung ==========
 function init() {
@@ -28,7 +28,7 @@ function showStartscreen() {
   attachStartscreenListeners();
 }
 
-function showSettings() {
+export function showSettings() {
   renderInMain(renderSettingsLayout());
   attachSettingsListeners();
   getGameThemeImage();
@@ -36,6 +36,13 @@ function showSettings() {
   getPlayerSelection();
   getBoardSelection();
   getThemeSelection();
+}
+
+function startGame() {
+  renderInMain(renderGameLayout());
+  setCurrentPlayerImage();
+  flippAnimation();
+  exitGame();
 }
 
 // ========== Event-Listener Setup ==========
@@ -48,7 +55,18 @@ function attachStartscreenListeners() {
 
 function attachSettingsListeners() {
   const returnBtn = document.querySelector("#return_btn");
+  const startGameBtn = document.querySelector("#start_btn");
   if (returnBtn) {
     returnBtn.addEventListener("click", showStartscreen);
+  }
+  if (startGameBtn) {
+    startGameBtn.addEventListener("click", startGame);
+  }
+}
+
+function attachGameListeners() {
+  const returnBtn = document.querySelector("#return_btn");
+  if (returnBtn) {
+    returnBtn.addEventListener("click", showSettings);
   }
 }

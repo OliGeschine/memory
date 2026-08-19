@@ -97,6 +97,15 @@
         background-position: center;
     }
 
+    &__list.selected{
+      .settings__choices__circle{
+        background-image: url("/assets/icons/choice_circle_active.svg");
+      }
+      .settings__choices__marker{
+        background-image: url("/assets/icons/choice_marker.svg");
+      }
+    }
+
     &__marker {
       width: 2rem;
       height: 1rem;

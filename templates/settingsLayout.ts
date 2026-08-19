@@ -90,7 +90,7 @@ export function renderSettingsLayout(): string {
                 <span id="player_selection" class="settings__selection__overview--player">Player</span>
                 <img class="settings__selection__overview--player--img" src="dist/assets/icons/overview_line.svg" alt="selected player">
                 <span id="board_selection" class="settings__selection__overview--board">Board</span>
-                <div class="settings__selection__overview--btn">
+                <div id="start_btn" class="settings__selection__overview--btn">
                     <img src="dist/assets/icons/play_icon.svg" alt="game">
                     <span>Start</span>
                 </div>
