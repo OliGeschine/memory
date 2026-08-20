@@ -1,8 +1,9 @@
 .card {
-    height: 100px;
+    height: 100%;
     aspect-ratio: 1/1;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 
     &__inner {
         position: relative;
@@ -15,16 +16,18 @@
     &__face {
         position: absolute;
         inset: 0;
-        background-color: green;
         backface-visibility: hidden;
 
         &--back {
             transform: rotateY(180deg);
-            background-color: red;
         }
     }
 
     &.is-flipped .card__inner {
         transform: rotateY(180deg);
+    }
+
+    &.matched{
+        pointer-events: none;
     }
 }

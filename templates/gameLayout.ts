@@ -21,14 +21,7 @@ export function renderGameLayout(): string {
             <div>Exit Game</div>
         </div>
     </div>
-    <div class="game__field">
-        <button class="card">
-            <div class="card__inner">
-                <div class="card__face"></div>
-                <div class="card__face card__face--back"></div>
-            </div>
-        </button>
-    </div>
+    <div class="game__field" id="game_field"></div>
     </section>
     `;
 }

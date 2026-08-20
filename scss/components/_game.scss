@@ -59,4 +59,21 @@
             }
         }
     }
+
+    &__field{
+        display: grid;
+        gap: 2rem;
+
+        &.board--16{
+            grid-template-columns: repeat(4, 100px);
+        }
+
+        &.board--24{
+            grid-template-columns: repeat(6, 100px);
+        }
+
+        &.board--36{
+            grid-template-columns: repeat(6, 100px);
+        }
+    }
 }

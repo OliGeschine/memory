@@ -18,6 +18,7 @@ let themes = [
 ];
 
 let selectedPlayer = "";
+let selectedBoard = 16;
 
 export function getSelectedPlayer() {
   return selectedPlayer;
@@ -94,8 +95,12 @@ export function getBoardSelection() {
   setSelection(boardElements);
   boardElements.forEach((board) => {
     board.addEventListener("click", () => {
-      boardSelection!.textContent =
-        board.querySelector("span")!.textContent!;
+      selectedBoard = Number(board.querySelector("span")!.textContent!.split(" ")[0]);
+      boardSelection!.textContent = board.querySelector("span")!.textContent!;
     });
   });
+}
+
+export function getSelectedBoard() {
+  return selectedBoard;
 }
