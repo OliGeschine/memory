@@ -3,11 +3,16 @@ import {showSettings} from "./main";
 import {codeVibesImages, boards} from "./boards";
 
 let flippedCards: HTMLElement[] = [];
+let currentPlayer: string = "";
 
 export const players ={
-    blue: "blue_player.svg",
-    orange: "orange_player.svg",
+    blue: "dist/assets/icons/blue_player.svg",
+    orange: "dist/assets/icons/orange_player.svg",
 };
+
+export function initializeCurrentPlayer() {
+  currentPlayer = getSelectedPlayer().toLowerCase();
+}
 
 export function setCurrentPlayerImage() {
   const playerImage = document.querySelector(
@@ -100,11 +105,36 @@ function checkPair(){
     firstCard.classList.add("matched");
     secondCard.classList.add("matched");
     flippedCards = [];
+    updateScore(currentPlayer);
     return;
   }
   setTimeout(() => {
     firstCard.classList.remove("is-flipped");
     secondCard.classList.remove("is-flipped");
     flippedCards = [];
+    switchPlayer();
   }, 800);
+}
+
+function switchPlayer() {
+  const currentPlayerImage = document.querySelector(
+    ".game__header--player img"
+  );
+  if (!currentPlayerImage) return;
+  if (currentPlayer === "blue") {
+    currentPlayer = "orange";
+    currentPlayerImage.setAttribute("src", players.orange);
+  } else {
+    currentPlayer = "blue";
+    currentPlayerImage.setAttribute("src", players.blue);
+  }
+}
+
+function updateScore(player: string) {
+  const scoreElement = document.querySelector(
+    `.game__header__score--player--${player.toLowerCase()} span`
+  );
+  if (!scoreElement) return;
+  const currentScore = parseInt(scoreElement.textContent || "0", 10);
+  scoreElement.textContent = (currentScore + 1).toString();
 }

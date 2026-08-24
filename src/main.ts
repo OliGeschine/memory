@@ -5,7 +5,7 @@ import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
 import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection } from "./settings";
-import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard } from "./game";
+import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer } from "./game";
 
 // ========== Initialisierung ==========
 function init() {
@@ -40,6 +40,8 @@ export function showSettings() {
 
 function startGame() {
   renderInMain(renderGameLayout());
+  attachGameListeners();
+  initializeCurrentPlayer();
   setCurrentPlayerImage();
   createBoard();
   flippAnimation();
