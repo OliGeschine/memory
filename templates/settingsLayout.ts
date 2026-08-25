@@ -18,22 +18,22 @@ export function renderSettingsLayout(): string {
                 <div class="settings__choices--themes">
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
-                        <span data-theme="0">Code vibes theme</span>
+                        <span data-theme="codeVibes">Code vibes theme</span>
                         <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
-                        <span data-theme="1">Gaming theme</span>
+                        <span data-theme="games">Gaming theme</span>
                         <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
-                        <span data-theme="2">DA Projects theme</span>
+                        <span data-theme="daProjects">DA Projects theme</span>
                         <div class="settings__choices__marker"></div>
                     </div>
                     <div class="settings__choices__list">
                         <div class="settings__choices__circle"></div>
-                        <span data-theme="3">Foods theme</span>
+                        <span data-theme="foods">Foods theme</span>
                         <div class="settings__choices__marker"></div>
                     </div>
                 </div>

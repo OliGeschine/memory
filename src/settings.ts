@@ -19,6 +19,7 @@ let themes = [
 
 let selectedPlayer = "";
 let selectedBoard = 16;
+let selectedTheme = "";
 
 export function getSelectedPlayer() {
   return selectedPlayer;
@@ -58,18 +59,22 @@ function setSelection(elements: NodeListOf<Element>) {
 
 export function getThemeSelection() {
   const themeSelection = document.querySelector("#theme_selection");
-  const themeElements = document.querySelectorAll(
+  const themes = document.querySelectorAll(
     ".settings__choices--themes .settings__choices__list"
   );
-  setSelection(themeElements);
-  themeElements.forEach((theme) => {
+setSelection(themes);
+  themes.forEach((theme) => {
     theme.addEventListener("click", () => {
-      const themeIndex = Number(
-        theme.querySelector("span")!.getAttribute("data-theme")
-      );
-      themeSelection!.textContent = themes[themeIndex].name;
+      const themeSpan = theme.querySelector("span");
+      if (!themeSpan) return;
+      selectedTheme = themeSpan.dataset.theme || "";
+      themeSelection!.textContent = themeSpan.textContent;
     });
   });
+}
+
+export function getSelectedTheme() {
+  return selectedTheme;
 }
 
 export function getPlayerSelection() {

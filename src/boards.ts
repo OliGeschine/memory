@@ -1,4 +1,5 @@
-export const codeVibesImages = [
+export const themeImages = {
+  codeVibes: [
     "card_01.svg",
     "card_02.svg",
     "card_03.svg",
@@ -17,7 +18,33 @@ export const codeVibesImages = [
     "card_16.svg",
     "card_17.svg",
     "card_18.svg",
-];
+  ],
+  games: [
+    "card_01.svg",
+    "card_02.svg",
+    "card_03.svg",
+    "card_04.svg",
+    "card_05.svg",
+    "card_06.svg",
+    "card_07.svg",
+    "card_08.svg",
+    "card_09.svg",
+    "card_10.svg",
+    "card_11.svg",
+    "card_12.svg",
+    "card_13.svg",
+    "card_14.svg",
+    "card_15.svg",
+    "card_16.svg",
+    "card_17.svg",
+    "card_18.svg",
+  ],
+};
+
+export const themeFolders = {
+  codeVibes: "code_vibes",
+  games: "games",
+};
 
 export const boards = {
   16: {
