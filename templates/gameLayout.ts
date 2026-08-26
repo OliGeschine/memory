@@ -1,6 +1,6 @@
-export function renderGameLayout(): string {
+export function renderGameLayout(selectedTheme: string): string {
     return `
-    <section id="game" class="game">
+    <section id="game" class="game theme--${selectedTheme}">
     <div class="game__header">
         <div class="game__header__score">
             <div class="game__header__score--player">
@@ -22,6 +22,7 @@ export function renderGameLayout(): string {
         </div>
     </div>
     <div class="game__field" id="game_field"></div>
+    <div class="game__exitoverlay--container"></div>
     </section>
     `;
 }

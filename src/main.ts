@@ -4,7 +4,7 @@ import { renderStartscreenLayout } from "../templates/startscreenLayout";
 import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
-import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection } from "./settings";
+import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme } from "./settings";
 import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer } from "./game";
 
 // ========== Initialisierung ==========
@@ -39,7 +39,8 @@ export function showSettings() {
 }
 
 function startGame() {
-  renderInMain(renderGameLayout());
+  const selectedTheme = getSelectedTheme();
+  renderInMain(renderGameLayout(selectedTheme));
   attachGameListeners();
   initializeCurrentPlayer();
   setCurrentPlayerImage();
