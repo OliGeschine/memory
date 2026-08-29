@@ -1,25 +1,25 @@
-let themes = [
-  {
+export let themes = {
+  codeVibes: {
     name: "Code vibes",
     image: "code_vibes_theme.svg",
   },
-  {
+  games: {
     name: "Gaming",
     image: "gaming_theme.svg",
   },
-  {
+  daProjects: {
     name: "DA Projects",
     image: "da_projects_theme.svg",
   },
-  {
+  foods: {
     name: "Foods",
     image: "foods_theme.svg",
   },
-];
+};
 
 let selectedPlayer = "";
 let selectedBoard = 16;
-let selectedTheme = "";
+let selectedTheme: keyof typeof themes = "codeVibes";
 
 export function getSelectedPlayer() {
   return selectedPlayer;
@@ -32,10 +32,11 @@ export function getGameThemeImage() {
   const themeImage = document.querySelector("#theme_image");
   themeElements.forEach((theme) => {
     theme.addEventListener("click", () => {
-      const themeIndex = Number(theme.getAttribute("data-theme"));
+      const themeKey = theme.getAttribute("data-theme") as keyof typeof themes;
+      if (!themeImage) return;
       themeImage!.setAttribute(
         "src",
-        `dist/assets/imgs/${themes[themeIndex].image}`
+        `dist/assets/imgs/${themes[themeKey].image}`
       );
     });
   });
@@ -43,7 +44,8 @@ export function getGameThemeImage() {
 
 export function setDefaultImg(){
     const themeImage = document.querySelector("#theme_image");
-    themeImage!.setAttribute("src", `dist/assets/imgs/${themes[0].image}`);
+    if (!themeImage) return;
+    themeImage!.setAttribute("src", `dist/assets/imgs/${themes[selectedTheme].image}`);
 }
 
 function setSelection(elements: NodeListOf<Element>) {
@@ -59,16 +61,16 @@ function setSelection(elements: NodeListOf<Element>) {
 
 export function getThemeSelection() {
   const themeSelection = document.querySelector("#theme_selection");
-  const themes = document.querySelectorAll(
+  const themeElements = document.querySelectorAll(
     ".settings__choices--themes .settings__choices__list"
   );
-setSelection(themes);
-  themes.forEach((theme) => {
+setSelection(themeElements);
+  themeElements.forEach((theme) => {
     theme.addEventListener("click", () => {
       const themeSpan = theme.querySelector("span");
       if (!themeSpan) return;
-      selectedTheme = themeSpan.dataset.theme || "";
-      themeSelection!.textContent = themeSpan.textContent;
+      selectedTheme = themeSpan.dataset.theme as keyof typeof themes;
+      themeSelection!.textContent = themes[selectedTheme].name;
     });
   });
 }

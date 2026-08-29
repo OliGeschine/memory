@@ -26,16 +26,6 @@ export function renderSettingsLayout(): string {
                         <span data-theme="games">Gaming theme</span>
                         <div class="settings__choices__marker"></div>
                     </div>
-                    <div class="settings__choices__list">
-                        <div class="settings__choices__circle"></div>
-                        <span data-theme="daProjects">DA Projects theme</span>
-                        <div class="settings__choices__marker"></div>
-                    </div>
-                    <div class="settings__choices__list">
-                        <div class="settings__choices__circle"></div>
-                        <span data-theme="foods">Foods theme</span>
-                        <div class="settings__choices__marker"></div>
-                    </div>
                 </div>
             </div>
             <div class="settings__choices">
