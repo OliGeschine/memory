@@ -5,7 +5,8 @@ import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
 import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme } from "./settings";
-import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer } from "./game";
+import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame } from "./game";
+import { getExitOverlays } from "../templates/exitOverlays";
 
 // ========== Initialisierung ==========
 function init() {
@@ -41,12 +42,17 @@ export function showSettings() {
 function startGame() {
   const selectedTheme = getSelectedTheme();
   renderInMain(renderGameLayout(selectedTheme));
-  attachGameListeners();
+  const overlayContainer = document.querySelector(".game__exitoverlay--container");
+  if (overlayContainer) {
+    overlayContainer.innerHTML = getExitOverlays(selectedTheme);
+  }
   initializeCurrentPlayer();
   setCurrentPlayerImage();
   createBoard();
   flippAnimation();
   exitGame();
+  quitGame();
+  backToGame();
 }
 
 // ========== Event-Listener Setup ==========
@@ -58,19 +64,8 @@ function attachStartscreenListeners() {
 }
 
 function attachSettingsListeners() {
-  const returnBtn = document.querySelector("#return_btn");
   const startGameBtn = document.querySelector("#start_btn");
-  if (returnBtn) {
-    returnBtn.addEventListener("click", showStartscreen);
-  }
   if (startGameBtn) {
     startGameBtn.addEventListener("click", startGame);
-  }
-}
-
-function attachGameListeners() {
-  const returnBtn = document.querySelector("#return_btn");
-  if (returnBtn) {
-    returnBtn.addEventListener("click", showSettings);
   }
 }

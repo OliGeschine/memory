@@ -7,14 +7,6 @@ export let themes = {
     name: "Gaming",
     image: "gaming_theme.svg",
   },
-  daProjects: {
-    name: "DA Projects",
-    image: "da_projects_theme.svg",
-  },
-  foods: {
-    name: "Foods",
-    image: "foods_theme.svg",
-  },
 };
 
 let selectedPlayer = "";

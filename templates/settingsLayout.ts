@@ -6,7 +6,6 @@ export function renderSettingsLayout(): string {
             <h3>Settings</h3>
             <img class="settings__img" src="dist/assets/icons/settings_h3_line.svg"/>
         </div>
-        <button id="return_btn" class="settings__btn">Back</button>
 
     <div class="settings__main">
         <div class="settings__overview">
