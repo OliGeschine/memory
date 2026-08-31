@@ -1,14 +1,9 @@
-import {getSelectedPlayer, getSelectedBoard, getSelectedTheme} from "./settings";
+import {themes, getSelectedPlayer, getSelectedBoard, getSelectedTheme} from "./settings";
 import {showSettings} from "./main";
 import {themeImages, boards, themeFolders} from "./boards";
 
 let flippedCards: HTMLElement[] = [];
 let currentPlayer: string = "";
-
-export const players ={
-    blue: "dist/assets/icons/blue_player.svg",
-    orange: "dist/assets/icons/orange_player.svg",
-};
 
 export function initializeCurrentPlayer() {
   currentPlayer = getSelectedPlayer().toLowerCase();
@@ -18,19 +13,42 @@ export function setCurrentPlayerImage() {
   const playerImage = document.querySelector(
     ".game__header--player img"
   );
+  if (!playerImage) return;
   const selectedPlayer = getSelectedPlayer();
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
   if (selectedPlayer === "Blue") {
-    playerImage!.setAttribute(
+    playerImage.setAttribute(
       "src",
-      "dist/assets/icons/blue_player.svg"
+      `dist/assets/icons/${theme.icons.blue}`
     );
   }
   if (selectedPlayer === "Orange") {
-    playerImage!.setAttribute(
+    playerImage.setAttribute(
       "src",
-      "dist/assets/icons/orange_player.svg"
+      `dist/assets/icons/${theme.icons.orange}`
     );
   }
+}
+
+export function setPlayerScoreImages() {
+  const blueImage = document.querySelector("#blue_player_image");
+  const orangeImage = document.querySelector("#orange_player_image");
+
+  if (!blueImage || !orangeImage) return;
+
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+
+  blueImage.setAttribute(
+    "src",
+    `dist/assets/icons/${theme.icons.blue}`
+  );
+
+  orangeImage.setAttribute(
+    "src",
+    `dist/assets/icons/${theme.icons.orange}`
+  );
 }
 
 export function exitGame() {
@@ -153,13 +171,15 @@ function switchPlayer() {
   const currentPlayerImage = document.querySelector(
     ".game__header--player img"
   );
+    const selectedTheme = getSelectedTheme();
+    const theme = themes[selectedTheme];
   if (!currentPlayerImage) return;
   if (currentPlayer === "blue") {
     currentPlayer = "orange";
-    currentPlayerImage.setAttribute("src", players.orange);
+    currentPlayerImage.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
   } else {
     currentPlayer = "blue";
-    currentPlayerImage.setAttribute("src", players.blue);
+    currentPlayerImage.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
   }
 }
 
@@ -170,4 +190,13 @@ function updateScore(player: string) {
   if (!scoreElement) return;
   const currentScore = parseInt(scoreElement.textContent || "0", 10);
   scoreElement.textContent = (currentScore + 1).toString();
+}
+
+export function setPlayerTexts() {
+  const bluePlayerText = document.querySelector("#blue-player-text");
+  const orangePlayerText = document.querySelector("#orange-player-text");
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  if (bluePlayerText) bluePlayerText.textContent = theme.texts.bluePlayer;
+  if (orangePlayerText) orangePlayerText.textContent = theme.texts.orangePlayer;
 }
