@@ -103,7 +103,7 @@ function shuffleCards(cards: string[]) {
 
 export function createBoard() {
   const boardSize = getSelectedBoard();
-const selectedTheme = getSelectedTheme() as keyof typeof themeImages;
+  const selectedTheme = getSelectedTheme() as keyof typeof themeImages;
   const cards = createCardImages(boardSize, selectedTheme);
   const shuffledCards = shuffleCards(cards);
   renderCards(shuffledCards, boardSize, selectedTheme);

@@ -92,7 +92,9 @@
         }
 
         &__score{
-            background-color: #535d75;
+            background-color: white;
+            padding: 0.5rem 0.5rem;
+            border-radius: 10px;
 
             &--player{
                 img{
@@ -104,6 +106,9 @@
 
         &--exitBtn{
             background-color: #535d75;
+            padding: 0.5rem 0.5rem;
+            border-radius: 10px;
+            border: solid 1px #E71C4F;
         }
     }
 }

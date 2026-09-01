@@ -17,14 +17,18 @@ export function getGameOverOverlay(selectedTheme: string): string {
         <div class="game__gameoveroverlay--content">
             <span>Game Over</span>
             <div class="game__header__score">
-                <div class="game__header__score--player">
-                    <img src="dist/assets/icons/blue_player.svg">
-                    <div class="game__header__score--player--blue">Blue: <span id="blue-score">0</span></div>
-                </div>
-                <div class="game__header__score--player">
-                    <img src="dist/assets/icons/orange_player.svg">
-                    <div class="game__header__score--player--orange">Orange: <span id="orange-score">0</span></div>
-                </div>
+             <div class="game__header__score--player">
+                <img id="blue_player_image">
+                <div class="game__header__score--player--blue">
+                <span id="blue-player-text"></span>
+                <span id="blue-score">0</span></div>
+            </div>
+            <div class="game__header__score--player">
+                <img id="orange_player_image">
+                <div class="game__header__score--player--orange">
+                <span id="orange-player-text"></span>
+                <span id="orange-score">0</span></div>
+            </div>
             </div>
         </div>
     </div>`;
