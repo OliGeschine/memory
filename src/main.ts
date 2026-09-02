@@ -1,12 +1,11 @@
 import "../scss/main.scss";
-
 import { renderStartscreenLayout } from "../templates/startscreenLayout";
 import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
 import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme } from "./settings";
 import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts } from "./game";
-import { getExitOverlays } from "../templates/exitOverlays";
+import { getExitOverlays, getGameOverOverlay } from "../templates/exitOverlays";
 
 // ========== Initialisierung ==========
 function init() {
@@ -45,6 +44,10 @@ function startGame() {
   const overlayContainer = document.querySelector(".game__exitoverlay--container");
   if (overlayContainer) {
     overlayContainer.innerHTML = getExitOverlays(selectedTheme);
+  }
+  const gameOverOverlayContainer = document.querySelector(".game__gameover--container");
+  if (gameOverOverlayContainer) {
+    gameOverOverlayContainer.innerHTML = getGameOverOverlay(selectedTheme);
   }
   initializeCurrentPlayer();
   setCurrentPlayerImage();

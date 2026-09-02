@@ -15,19 +15,20 @@ export function getGameOverOverlay(selectedTheme: string): string {
     return `
     <div class="game__gameoveroverlay theme--${selectedTheme}">
         <div class="game__gameoveroverlay--content">
-            <span>Game Over</span>
+            <h5>Game Over</h5>
+            <span>Final score</span>
             <div class="game__header__score">
              <div class="game__header__score--player">
-                <img id="blue_player_image">
+                <img id="finalscore-blue-icon">
                 <div class="game__header__score--player--blue">
                 <span id="blue-player-text"></span>
-                <span id="blue-score">0</span></div>
+                <span id="finalscore-blue">0</span></div>
             </div>
             <div class="game__header__score--player">
-                <img id="orange_player_image">
+                <img id="finalscore-orange-icon">
                 <div class="game__header__score--player--orange">
                 <span id="orange-player-text"></span>
-                <span id="orange-score">0</span></div>
+                <span id="finalscore-orange">0</span></div>
             </div>
             </div>
         </div>

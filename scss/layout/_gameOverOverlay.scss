@@ -1,4 +1,4 @@
-.game__exitoverlay {
+.game__gameoveroverlay {
     display: none;
     position: fixed;
     top: 0;
@@ -7,8 +7,34 @@
     height: 100%;
     justify-content: center;
     align-items: center;
+    background-color: #303131;
     &.active {
         display: flex;
     }
+}
 
+.theme--games{
+    .game__gameoveroverlay{
+        &--content{
+            height: 380px;
+            width: 970px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+
+            >h5{
+                font-size: 5rem;
+                color: #E71C4F;
+                margin-bottom: 104px;
+            }
+
+            >span{
+                font-size: 1.75rem;
+                color: #ffffff;
+                margin-bottom: 24px;
+            }
+        }
+    }
 }

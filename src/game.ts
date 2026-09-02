@@ -34,17 +34,13 @@ export function setCurrentPlayerImage() {
 export function setPlayerScoreImages() {
   const blueImage = document.querySelector("#blue_player_image");
   const orangeImage = document.querySelector("#orange_player_image");
-
   if (!blueImage || !orangeImage) return;
-
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
-
   blueImage.setAttribute(
     "src",
     `dist/assets/icons/${theme.icons.blue}`
   );
-
   orangeImage.setAttribute(
     "src",
     `dist/assets/icons/${theme.icons.orange}`
@@ -157,6 +153,7 @@ function checkPair(){
     secondCard.classList.add("matched");
     flippedCards = [];
     updateScore(currentPlayer);
+    openGameOverOverlay();
     return;
   }
   setTimeout(() => {
@@ -199,4 +196,36 @@ export function setPlayerTexts() {
   const theme = themes[selectedTheme];
   if (bluePlayerText) bluePlayerText.textContent = theme.texts.bluePlayer;
   if (orangePlayerText) orangePlayerText.textContent = theme.texts.orangePlayer;
+}
+
+export function openGameOverOverlay() {
+  const overlay = document.querySelector('.game__gameoveroverlay');
+  const boardSize = getSelectedBoard();
+  if (!overlay) return;
+  const matchedCards = document.querySelectorAll(".card.matched");
+  if (boardSize === matchedCards.length) {
+    const blueScore = document.querySelector("#blue-score");
+    const orangeScore = document.querySelector("#orange-score");
+    const finalBlueScore = document.querySelector("#finalscore-blue");
+    const finalOrangeScore = document.querySelector("#finalscore-orange");
+    if(blueScore && finalBlueScore) finalBlueScore.textContent = blueScore.textContent;
+    if(orangeScore && finalOrangeScore) finalOrangeScore.textContent = orangeScore.textContent;
+    overlay.classList.add('active');
+    setFinalScoreIcons();
+  }
+}
+
+export function closeGameOverOverlay() {
+  const overlay = document.querySelector('.game__gameoveroverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+}
+
+function setFinalScoreIcons() {
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  const blueIcon = document.querySelector("#finalscore-blue-icon");
+  const orangeIcon = document.querySelector("#finalscore-orange-icon");
+  if (blueIcon) blueIcon.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
+  if (orangeIcon) orangeIcon.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
 }

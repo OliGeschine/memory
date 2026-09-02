@@ -7,13 +7,13 @@ export function renderGameLayout(selectedTheme: string): string {
                 <img id="blue_player_image">
                 <div class="game__header__score--player--blue">
                 <span id="blue-player-text"></span>
-                <span id="blue-score">0</span></div>
+                <span id="blue-score"></span></div>
             </div>
             <div class="game__header__score--player">
                 <img id="orange_player_image">
                 <div class="game__header__score--player--orange">
                 <span id="orange-player-text"></span>
-                <span id="orange-score">0</span></div>
+                <span id="orange-score"></span></div>
             </div>
         </div>
         <div class="game__header--player">
