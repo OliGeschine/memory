@@ -1,4 +1,4 @@
-.game__gameoveroverlay {
+.game__winner {
     display: none;
     position: fixed;
     top: 0;
@@ -11,10 +11,17 @@
     &.active {
         display: flex;
     }
+
+    &--homebtn {
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        background-color: #415652;
+        border: solid 1px #66CFBC;
+    }
 }
 
 .theme--games{
-    .game__gameoveroverlay{
+    .game__winner{
         background-color: #284f60;
         &--content{
             height: 380px;
@@ -25,17 +32,19 @@
             align-items: center;
             font-family: 'Orbitron', sans-serif;
 
-            >h5{
-                font-size: 5rem;
-                color: #ED1B76;
-                margin-bottom: 104px;
-            }
-
             >span{
                 font-size: 1.75rem;
                 color: #ffffff;
                 margin-bottom: 24px;
             }
+        }
+
+        &--homebtn{
+            background-color: #284f60;
+            padding: 0.5rem 0.5rem;
+            cursor: pointer;
+            border-radius: 10px;
+            border: solid 1px #E71C4F;
         }
     }
 }

@@ -5,7 +5,7 @@ import { renderGameLayout } from "../templates/gameLayout";
 
 import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme } from "./settings";
 import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts } from "./game";
-import { getExitOverlays, getGameOverOverlay } from "../templates/exitOverlays";
+import { getExitOverlays, getGameOverOverlay, getWinnerOverlay } from "../templates/exitOverlays";
 
 // ========== Initialisierung ==========
 function init() {
@@ -41,14 +41,7 @@ export function showSettings() {
 function startGame() {
   const selectedTheme = getSelectedTheme();
   renderInMain(renderGameLayout(selectedTheme));
-  const overlayContainer = document.querySelector(".game__exitoverlay--container");
-  if (overlayContainer) {
-    overlayContainer.innerHTML = getExitOverlays(selectedTheme);
-  }
-  const gameOverOverlayContainer = document.querySelector(".game__gameover--container");
-  if (gameOverOverlayContainer) {
-    gameOverOverlayContainer.innerHTML = getGameOverOverlay(selectedTheme);
-  }
+  addOverlays();
   initializeCurrentPlayer();
   setCurrentPlayerImage();
   setPlayerScoreImages();
@@ -72,5 +65,21 @@ function attachSettingsListeners() {
   const startGameBtn = document.querySelector("#start_btn");
   if (startGameBtn) {
     startGameBtn.addEventListener("click", startGame);
+  }
+}
+
+function addOverlays() {
+  const selectedTheme = getSelectedTheme();
+  const overlayContainer = document.querySelector(".game__exitoverlay--container");
+  if (overlayContainer) {
+    overlayContainer.innerHTML = getExitOverlays(selectedTheme);
+  }
+  const gameOverOverlayContainer = document.querySelector(".game__gameover--container");
+  if (gameOverOverlayContainer) {
+    gameOverOverlayContainer.innerHTML = getGameOverOverlay(selectedTheme);
+  }
+  const winnerOverlayContainer = document.querySelector(".game__winner--container");
+  if (winnerOverlayContainer) {
+    winnerOverlayContainer.innerHTML = getWinnerOverlay(selectedTheme);
   }
 }

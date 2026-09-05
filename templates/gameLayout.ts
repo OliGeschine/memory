@@ -28,6 +28,7 @@ export function renderGameLayout(selectedTheme: string): string {
     <div class="game__field" id="game_field"></div>
     <div class="game__exitoverlay--container"></div>
     <div class="game__gameover--container"></div>
+    <div class="game__winner--container"></div>
     </section>
     `;
 }

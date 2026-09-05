@@ -8,7 +8,10 @@ export let themes = {
     },
     texts:{
       bluePlayer: "Blue:",
-      orangePlayer: "Orange:"
+      orangePlayer: "Orange:",
+      blueWinner: "Blue player",
+      orangeWinner: "Orange player",
+      homeBtn: "Back to start"
     }
   },
   games: {
@@ -20,7 +23,10 @@ export let themes = {
     },
     texts:{
       bluePlayer: "",
-      orangePlayer: ""
+      orangePlayer: "",
+      blueWinner: "Blue player",
+      orangeWinner: "Orange player",
+      homeBtn: "Home"
     }
   },
 };

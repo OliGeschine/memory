@@ -217,12 +217,16 @@ export function openGameOverOverlay() {
     if (finalBlueScore) finalBlueScore.textContent = finalBlueScoreValue.toString();
     if (finalOrangeScore) finalOrangeScore.textContent = finalOrangeScoreValue.toString();
   }
+  setTimeout(() => {
+    closeGameOverOverlay();
+  }, 5000);
 }
 
 export function closeGameOverOverlay() {
   const overlay = document.querySelector('.game__gameoveroverlay');
   if (!overlay) return;
   overlay.classList.remove('active');
+  openWinnerOverlay();
 }
 
 function setFinalScoreIcons() {
@@ -240,4 +244,16 @@ function getFinalScore(player: string): number {
   );
   if (!scoreElement) return 0;
   return parseInt(scoreElement.textContent || "0", 10);
+}
+
+function openWinnerOverlay() {
+  const overlay = document.querySelector('.game__winneroverlay');
+  if (!overlay) return;
+  overlay.classList.add('active');
+}
+
+function closeWinnerOverlay() {
+  const overlay = document.querySelector('.game__winneroverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
 }
