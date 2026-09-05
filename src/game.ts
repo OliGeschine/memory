@@ -182,7 +182,7 @@ function switchPlayer() {
 
 function updateScore(player: string) {
   const scoreElement = document.querySelector(
-    `.game__header__score--player--${player.toLowerCase()} span`
+    `#${player.toLowerCase()}-score`
   );
   if (!scoreElement) return;
   const currentScore = parseInt(scoreElement.textContent || "0", 10);
@@ -212,6 +212,10 @@ export function openGameOverOverlay() {
     if(orangeScore && finalOrangeScore) finalOrangeScore.textContent = orangeScore.textContent;
     overlay.classList.add('active');
     setFinalScoreIcons();
+    const finalBlueScoreValue = getFinalScore("blue");
+    const finalOrangeScoreValue = getFinalScore("orange");
+    if (finalBlueScore) finalBlueScore.textContent = finalBlueScoreValue.toString();
+    if (finalOrangeScore) finalOrangeScore.textContent = finalOrangeScoreValue.toString();
   }
 }
 
@@ -228,4 +232,12 @@ function setFinalScoreIcons() {
   const orangeIcon = document.querySelector("#finalscore-orange-icon");
   if (blueIcon) blueIcon.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
   if (orangeIcon) orangeIcon.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
+}
+
+function getFinalScore(player: string): number {
+  const scoreElement = document.querySelector(
+    `#${player.toLowerCase()}-score`
+  );
+  if (!scoreElement) return 0;
+  return parseInt(scoreElement.textContent || "0", 10);
 }
