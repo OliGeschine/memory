@@ -153,7 +153,13 @@ function checkPair(){
     secondCard.classList.add("matched");
     flippedCards = [];
     updateScore(currentPlayer);
-    openGameOverOverlay();
+    const boardSize = getSelectedBoard();
+    const matchedCards = document.querySelectorAll(".card.matched");
+    if (boardSize === matchedCards.length) {
+      setTimeout(() => {
+        openGameOverOverlay();
+      }, 1500);
+    }
     return;
   }
   setTimeout(() => {
@@ -216,10 +222,10 @@ export function openGameOverOverlay() {
     const finalOrangeScoreValue = getFinalScore("orange");
     if (finalBlueScore) finalBlueScore.textContent = finalBlueScoreValue.toString();
     if (finalOrangeScore) finalOrangeScore.textContent = finalOrangeScoreValue.toString();
-  }
-  setTimeout(() => {
+      setTimeout(() => {
     closeGameOverOverlay();
-  }, 5000);
+  }, 3000);
+  }
 }
 
 export function closeGameOverOverlay() {
@@ -247,13 +253,34 @@ function getFinalScore(player: string): number {
 }
 
 function openWinnerOverlay() {
-  const overlay = document.querySelector('.game__winneroverlay');
+  const overlay = document.querySelector('.game__winner');
   if (!overlay) return;
+  const blueScore = getFinalScore("blue");
+  const orangeScore = getFinalScore("orange");
+  const winner = blueScore > orangeScore ? "blue" : "orange"; 
+  setWinner(winner);
+  setWinnerIcon(winner);
+  setHomeBtn();
   overlay.classList.add('active');
 }
 
-function closeWinnerOverlay() {
-  const overlay = document.querySelector('.game__winneroverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
+function setWinner(player: "blue" | "orange") {
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  const winnerElement = document.querySelector("#winner-name");
+  if (winnerElement) winnerElement.textContent = theme.texts[`${player.toLowerCase()}Winner` as keyof typeof theme.texts];
+}
+
+function setWinnerIcon(player: "blue" | "orange") {
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  const winnerIconElement = document.querySelector("#winner-icon");
+  if (winnerIconElement) winnerIconElement.setAttribute("src", `dist/assets/icons/${theme.icons[`${player.toLowerCase()}Winner` as keyof typeof theme.icons]}`);
+}
+
+function setHomeBtn() {
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  const homeBtn = document.querySelector("#homebtn-text");
+  if (homeBtn) homeBtn.textContent = theme.texts.homeBtn;
 }

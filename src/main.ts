@@ -68,6 +68,13 @@ function attachSettingsListeners() {
   }
 }
 
+function attachWinnerOverlayListeners() {
+  const homeBtn = document.querySelector(".game__winner--homebtn");
+  if (homeBtn) {
+    homeBtn.addEventListener("click", showStartscreen);
+  }
+}
+
 function addOverlays() {
   const selectedTheme = getSelectedTheme();
   const overlayContainer = document.querySelector(".game__exitoverlay--container");
@@ -82,4 +89,5 @@ function addOverlays() {
   if (winnerOverlayContainer) {
     winnerOverlayContainer.innerHTML = getWinnerOverlay(selectedTheme);
   }
+  attachWinnerOverlayListeners();
 }

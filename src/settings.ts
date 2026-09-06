@@ -4,7 +4,9 @@ export let themes = {
     image: "code_vibes_theme.svg",
     icons: {
       blue: "blue_player.svg",
-      orange: "orange_player.svg"
+      orange: "orange_player.svg",
+      blueWinner: "blue_pawn.svg",
+      orangeWinner: "orange_pawn.svg"
     },
     texts:{
       bluePlayer: "Blue:",
@@ -19,7 +21,9 @@ export let themes = {
     image: "gaming_theme.svg",
     icons: {
       blue: "blue_pawn.svg",
-      orange: "orange_pawn.svg"
+      orange: "orange_pawn.svg",
+      blueWinner: "victory.svg",
+      orangeWinner: "victory.svg"
     },
     texts:{
       bluePlayer: "",
