@@ -257,21 +257,25 @@ function openWinnerOverlay() {
   if (!overlay) return;
   const blueScore = getFinalScore("blue");
   const orangeScore = getFinalScore("orange");
+  if (blueScore === orangeScore) {
+    setWinner("draw");
+    setWinnerIcon("draw");
+  } else{
   const winner = blueScore > orangeScore ? "blue" : "orange"; 
   setWinner(winner);
-  setWinnerIcon(winner);
+  setWinnerIcon(winner);}
   setHomeBtn();
   overlay.classList.add('active');
 }
 
-function setWinner(player: "blue" | "orange") {
+function setWinner(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
   const winnerElement = document.querySelector("#winner-name");
   if (winnerElement) winnerElement.textContent = theme.texts[`${player.toLowerCase()}Winner` as keyof typeof theme.texts];
 }
 
-function setWinnerIcon(player: "blue" | "orange") {
+function setWinnerIcon(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
   const winnerIconElement = document.querySelector("#winner-icon");

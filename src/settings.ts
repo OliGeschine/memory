@@ -6,13 +6,15 @@ export let themes = {
       blue: "blue_player.svg",
       orange: "orange_player.svg",
       blueWinner: "blue_pawn.svg",
-      orangeWinner: "orange_pawn.svg"
+      orangeWinner: "orange_pawn.svg",
+      drawWinner: "draw_green.svg"
     },
     texts:{
       bluePlayer: "Blue:",
       orangePlayer: "Orange:",
       blueWinner: "Blue player",
       orangeWinner: "Orange player",
+      drawWinner: "draw",
       homeBtn: "Back to start"
     }
   },
@@ -23,13 +25,15 @@ export let themes = {
       blue: "blue_pawn.svg",
       orange: "orange_pawn.svg",
       blueWinner: "victory.svg",
-      orangeWinner: "victory.svg"
+      orangeWinner: "victory.svg",
+      drawWinner: "draw_red.svg"
     },
     texts:{
       bluePlayer: "",
       orangePlayer: "",
       blueWinner: "Blue player",
       orangeWinner: "Orange player",
+      drawWinner: "draw",
       homeBtn: "Home"
     }
   },
