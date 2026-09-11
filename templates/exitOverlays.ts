@@ -39,6 +39,7 @@ export function getWinnerOverlay(selectedTheme: string): string {
     return `
     <div class="game__winner theme--${selectedTheme}">
         <div class="game__winner--content">
+            <div id="winner-icon-container"></div>
             <span>The winner is</span>
             <span id="winner-name"></span>
             <img id="winner-icon">

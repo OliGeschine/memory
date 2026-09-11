@@ -42,6 +42,16 @@
                 font-size: 4rem;
                 color: #ffffff;
                 margin-bottom: 24px;
+
+                &.winner--blue {
+                    color: #2A9DF4;
+                }
+                &.winner--orange {
+                    color: #F4A12A;
+                }
+                &.winner--draw {
+                    color: #4DD5BC;
+                }
             }
 
             >#winner-icon{
@@ -57,6 +67,67 @@
             cursor: pointer;
             border-radius: 10px;
             border: solid 1px #E71C4F;
+        }
+    }
+}
+
+.theme--codeVibes{
+    .game__winner{
+        background-color: #303131;
+        &--content{
+            height: 380px;
+            width: 970px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+
+            >span{
+                font-size: 1.75rem;
+                color: #ffffff;
+                margin-bottom: 10px;
+            }
+
+            >#winner-icon-container{
+                top: 0;
+                position: absolute;
+                margin-bottom: 24px;
+            }
+
+            >#winner-name{
+                font-size: 3.75rem;
+                color: #ffffff;
+                margin-bottom: 64px;
+
+                &.winner--blue {
+                    color: #2A9DF4;
+                }
+                &.winner--orange {
+                    color: #F4A12A;
+                }
+                &.winner--draw {
+                    color: #4DD5BC;
+                }
+            }
+
+            >#winner-icon{
+                width: 200px;
+                height: 250px;
+                margin-bottom: 64px;
+            }
+        }
+
+        &--homebtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 204px;
+            height: 62px;
+            border: solid 2px #66CFBC;
+            cursor: pointer;
+            font-family: 'Red Rose', sans-serif;
+            font-size: 1.5rem;
         }
     }
 }
