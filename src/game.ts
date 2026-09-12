@@ -4,6 +4,30 @@ import {themeImages, boards, themeFolders} from "./boards";
 
 let flippedCards: HTMLElement[] = [];
 let currentPlayer: string = "";
+let matchTimer: ReturnType<typeof setTimeout> | null = null;
+let mismatchTimer: ReturnType<typeof setTimeout> | null = null;
+let gameOverTimer: ReturnType<typeof setTimeout> | null = null;
+
+export function resetGameStatus() {
+  flippedCards = [];
+  currentPlayer = "";
+  clearGameTimers();
+}
+
+function clearGameTimers() {
+  if (matchTimer) {
+    clearTimeout(matchTimer);
+    matchTimer = null;
+  }
+  if (mismatchTimer) {
+    clearTimeout(mismatchTimer);
+    mismatchTimer = null;
+  }
+  if (gameOverTimer) {
+    clearTimeout(gameOverTimer);
+    gameOverTimer = null;
+  }
+}
 
 export function initializeCurrentPlayer() {
   currentPlayer = getSelectedPlayer().toLowerCase();
@@ -82,6 +106,7 @@ export function quitGame() {
   if (quitBtn) {
     quitBtn.addEventListener("click", () => {
       closeExitOverlay();
+      resetGameStatus();
       showSettings();
     });
   }
@@ -156,13 +181,13 @@ function checkPair(){
     const boardSize = getSelectedBoard();
     const matchedCards = document.querySelectorAll(".card.matched");
     if (boardSize === matchedCards.length) {
-      setTimeout(() => {
+      matchTimer = setTimeout(() => {
         openGameOverOverlay();
       }, 1500);
     }
     return;
   }
-  setTimeout(() => {
+  mismatchTimer = setTimeout(() => {
     firstCard.classList.remove("is-flipped");
     secondCard.classList.remove("is-flipped");
     flippedCards = [];
@@ -228,7 +253,7 @@ export function openGameOverOverlay() {
     const finalOrangeScore = document.querySelector("#finalscore-orange");
     if (finalBlueScore) finalBlueScore.textContent = finalBlueScoreValue.toString();
     if (finalOrangeScore) finalOrangeScore.textContent = finalOrangeScoreValue.toString();
-      setTimeout(() => {
+    gameOverTimer = setTimeout(() => {
     closeGameOverOverlay();
   }, 3000);
   }
@@ -304,13 +329,6 @@ function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   }
 }
 
-function setHomeBtn() {
-  const selectedTheme = getSelectedTheme();
-  const theme = themes[selectedTheme];
-  const homeBtn = document.querySelector("#homebtn-text");
-  if (homeBtn) homeBtn.textContent = theme.texts.homeBtn;
-}
-
 function setWinnerText(player: "blue" | "orange" | "draw") {
   const winnerTextElement = document.querySelector("#winner-text");
   if (!winnerTextElement) return;
@@ -319,4 +337,11 @@ function setWinnerText(player: "blue" | "orange" | "draw") {
   } else {
     winnerTextElement.textContent = "The winner is";
   }
+}
+
+function setHomeBtn() {
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  const homeBtn = document.querySelector("#homebtn-text");
+  if (homeBtn) homeBtn.textContent = theme.texts.homeBtn;
 }

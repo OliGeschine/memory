@@ -12,8 +12,8 @@ export let themes = {
     texts:{
       bluePlayer: "Blue",
       orangePlayer: "Orange",
-      blueWinner: "Blue player",
-      orangeWinner: "Orange player",
+      blueWinner: "BLUE PLAYER",
+      orangeWinner: "ORANGE PLAYER",
       drawWinner: "DRAW",
       homeBtn: "Back to start"
     }
@@ -31,8 +31,8 @@ export let themes = {
     texts:{
       bluePlayer: "",
       orangePlayer: "",
-      blueWinner: "Blue player",
-      orangeWinner: "Orange player",
+      blueWinner: "Blue Player",
+      orangeWinner: "Orange Player",
       drawWinner: "DRAW",
       homeBtn: "Home"
     }

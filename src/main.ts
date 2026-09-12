@@ -4,12 +4,13 @@ import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
 import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme } from "./settings";
-import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts } from "./game";
+import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts, resetGameStatus } from "./game";
 import { getExitOverlays, getGameOverOverlay, getWinnerOverlay } from "../templates/exitOverlays";
 
 // ========== Initialisierung ==========
 function init() {
   showStartscreen();
+  resetGameStatus();
 }
 
 window.addEventListener("DOMContentLoaded", init);

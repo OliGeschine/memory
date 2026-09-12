@@ -35,13 +35,12 @@
             >span{
                 font-size: 1.75rem;
                 color: #ffffff;
-                margin-bottom: 24px;
             }
 
             >#winner-name{
                 font-size: 4rem;
                 color: #ffffff;
-                margin-bottom: 24px;
+                text-shadow: 1px 1px 6px black;
 
                 &.winner--blue {
                     color: #2A9DF4;
@@ -50,7 +49,9 @@
                     color: #F4A12A;
                 }
                 &.winner--draw {
-                    color: #4DD5BC;
+                    color: #ED1B76;
+                    font-size: 8rem;
+                    font-weight: bold;
                 }
             }
 
