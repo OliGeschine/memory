@@ -10,11 +10,11 @@ export let themes = {
       drawWinner: "draw_green.svg"
     },
     texts:{
-      bluePlayer: "Blue:",
-      orangePlayer: "Orange:",
+      bluePlayer: "Blue",
+      orangePlayer: "Orange",
       blueWinner: "Blue player",
       orangeWinner: "Orange player",
-      drawWinner: "draw",
+      drawWinner: "DRAW",
       homeBtn: "Back to start"
     }
   },
@@ -33,7 +33,7 @@ export let themes = {
       orangePlayer: "",
       blueWinner: "Blue player",
       orangeWinner: "Orange player",
-      drawWinner: "draw",
+      drawWinner: "DRAW",
       homeBtn: "Home"
     }
   },

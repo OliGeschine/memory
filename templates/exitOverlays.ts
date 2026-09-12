@@ -21,13 +21,13 @@ export function getGameOverOverlay(selectedTheme: string): string {
              <div class="game__header__score--player">
                 <img id="finalscore-blue-icon">
                 <div class="game__header__score--player--blue">
-                <span id="blue-player-text"></span>
+                <span id="final-blue-player-text"></span>
                 <span id="finalscore-blue">0</span></div>
             </div>
             <div class="game__header__score--player">
                 <img id="finalscore-orange-icon">
                 <div class="game__header__score--player--orange">
-                <span id="orange-player-text"></span>
+                <span id="final-orange-player-text"></span>
                 <span id="finalscore-orange">0</span></div>
             </div>
             </div>
@@ -40,7 +40,7 @@ export function getWinnerOverlay(selectedTheme: string): string {
     <div class="game__winner theme--${selectedTheme}">
         <div class="game__winner--content">
             <div id="winner-icon-container"></div>
-            <span>The winner is</span>
+            <span id="winner-text"></span>
             <span id="winner-name"></span>
             <img id="winner-icon">
             <div class="game__winner--homebtn">

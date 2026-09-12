@@ -204,22 +204,28 @@ export function setPlayerTexts() {
   if (orangePlayerText) orangePlayerText.textContent = theme.texts.orangePlayer;
 }
 
+function setFinalPlayerTexts() {
+  const finalBluePlayerText = document.querySelector("#final-blue-player-text");
+  const finalOrangePlayerText = document.querySelector("#final-orange-player-text");
+  const selectedTheme = getSelectedTheme();
+  const theme = themes[selectedTheme];
+  if (finalBluePlayerText) finalBluePlayerText.textContent = theme.texts.bluePlayer;
+  if (finalOrangePlayerText) finalOrangePlayerText.textContent = theme.texts.orangePlayer;
+}
+
 export function openGameOverOverlay() {
   const overlay = document.querySelector('.game__gameoveroverlay');
   const boardSize = getSelectedBoard();
   if (!overlay) return;
   const matchedCards = document.querySelectorAll(".card.matched");
   if (boardSize === matchedCards.length) {
-    const blueScore = document.querySelector("#blue-score");
-    const orangeScore = document.querySelector("#orange-score");
-    const finalBlueScore = document.querySelector("#finalscore-blue");
-    const finalOrangeScore = document.querySelector("#finalscore-orange");
-    if(blueScore && finalBlueScore) finalBlueScore.textContent = blueScore.textContent;
-    if(orangeScore && finalOrangeScore) finalOrangeScore.textContent = orangeScore.textContent;
     overlay.classList.add('active');
     setFinalScoreIcons();
+    setFinalPlayerTexts();
     const finalBlueScoreValue = getFinalScore("blue");
     const finalOrangeScoreValue = getFinalScore("orange");
+    const finalBlueScore = document.querySelector("#finalscore-blue");
+    const finalOrangeScore = document.querySelector("#finalscore-orange");
     if (finalBlueScore) finalBlueScore.textContent = finalBlueScoreValue.toString();
     if (finalOrangeScore) finalOrangeScore.textContent = finalOrangeScoreValue.toString();
       setTimeout(() => {
@@ -260,11 +266,13 @@ function openWinnerOverlay() {
   if (blueScore === orangeScore) {
     setWinner("draw");
     setWinnerIcon("draw");
+    setWinnerText("draw");
   } else{
   const winner = blueScore > orangeScore ? "blue" : "orange"; 
   setWinner(winner);
   setWinnerIcon(winner);
   setWinnerIconContainer(winner);
+  setWinnerText(winner);
 }
   setHomeBtn();
   overlay.classList.add('active');
@@ -301,4 +309,14 @@ function setHomeBtn() {
   const theme = themes[selectedTheme];
   const homeBtn = document.querySelector("#homebtn-text");
   if (homeBtn) homeBtn.textContent = theme.texts.homeBtn;
+}
+
+function setWinnerText(player: "blue" | "orange" | "draw") {
+  const winnerTextElement = document.querySelector("#winner-text");
+  if (!winnerTextElement) return;
+  if (player === "draw") {
+    winnerTextElement.textContent = "It's a";
+  } else {
+    winnerTextElement.textContent = "The winner is";
+  }
 }
