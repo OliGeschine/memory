@@ -40,19 +40,20 @@ export function setCurrentPlayerImage() {
   if (!playerImage) return;
   const selectedPlayer = getSelectedPlayer();
   const selectedTheme = getSelectedTheme();
+  setPlayerIcon(playerImage, selectedPlayer, selectedTheme);
+}
+
+function setPlayerIcon(
+  playerImage: Element,
+  selectedPlayer: string,
+  selectedTheme: keyof typeof themes
+) {
   const theme = themes[selectedTheme];
-  if (selectedPlayer === "Blue") {
-    playerImage.setAttribute(
-      "src",
-      `dist/assets/icons/${theme.icons.blue}`
-    );
-  }
-  if (selectedPlayer === "Orange") {
-    playerImage.setAttribute(
-      "src",
-      `dist/assets/icons/${theme.icons.orange}`
-    );
-  }
+  const player = selectedPlayer.toLowerCase() as "blue" | "orange";
+  playerImage.setAttribute(
+    "src",
+    `dist/assets/icons/${theme.icons[player]}`
+  );
 }
 
 export function setPlayerScoreImages() {
@@ -169,24 +170,38 @@ export function flippAnimation() {
     });
 }
 
-function checkPair(){
+function checkPair() {
   const [firstCard, secondCard] = flippedCards;
-  const firstImage = firstCard.dataset.card;
-  const secondImage = secondCard.dataset.card;
-  if (firstImage === secondImage) {
-    firstCard.classList.add("matched");
-    secondCard.classList.add("matched");
-    flippedCards = [];
-    updateScore(currentPlayer);
-    const boardSize = getSelectedBoard();
-    const matchedCards = document.querySelectorAll(".card.matched");
-    if (boardSize === matchedCards.length) {
-      matchTimer = setTimeout(() => {
-        openGameOverOverlay();
-      }, 1500);
-    }
+  if (firstCard.dataset.card === secondCard.dataset.card) {
+    handleMatch(firstCard, secondCard);
     return;
   }
+  handleMismatch(firstCard, secondCard);
+}
+
+function handleMatch(firstCard: Element, secondCard: Element) {
+  firstCard.classList.add("matched");
+  secondCard.classList.add("matched");
+  flippedCards = [];
+  updateScore(currentPlayer);
+  checkGameOver();
+}
+
+function checkGameOver() {
+  const boardSize = getSelectedBoard();
+  const matchedCards = document.querySelectorAll(".card.matched");
+  if (boardSize === matchedCards.length) {
+    startMatchTimer();
+  }
+}
+
+function startMatchTimer() {
+  matchTimer = setTimeout(() => {
+    openGameOverOverlay();
+  }, 1500);
+}
+
+function handleMismatch(firstCard: Element, secondCard: Element) {
   mismatchTimer = setTimeout(() => {
     firstCard.classList.remove("is-flipped");
     secondCard.classList.remove("is-flipped");
@@ -239,24 +254,41 @@ function setFinalPlayerTexts() {
 }
 
 export function openGameOverOverlay() {
-  const overlay = document.querySelector('.game__gameoveroverlay');
+  const overlay = document.querySelector(".game__gameoveroverlay");
+  if (!overlay || !isGameFinished()) return;
+  overlay.classList.add("active");
+  setGameOverScores();
+  startGameOverTimer();
+}
+
+function isGameFinished() {
   const boardSize = getSelectedBoard();
-  if (!overlay) return;
   const matchedCards = document.querySelectorAll(".card.matched");
-  if (boardSize === matchedCards.length) {
-    overlay.classList.add('active');
-    setFinalScoreIcons();
-    setFinalPlayerTexts();
-    const finalBlueScoreValue = getFinalScore("blue");
-    const finalOrangeScoreValue = getFinalScore("orange");
-    const finalBlueScore = document.querySelector("#finalscore-blue");
-    const finalOrangeScore = document.querySelector("#finalscore-orange");
-    if (finalBlueScore) finalBlueScore.textContent = finalBlueScoreValue.toString();
-    if (finalOrangeScore) finalOrangeScore.textContent = finalOrangeScoreValue.toString();
-    gameOverTimer = setTimeout(() => {
+  return boardSize === matchedCards.length;
+}
+
+function setGameOverScores() {
+  setFinalScoreIcons();
+  setFinalPlayerTexts();
+  const blueScore = getFinalScore("blue");
+  const orangeScore = getFinalScore("orange");
+  setFinalScore("blue", blueScore);
+  setFinalScore("orange", orangeScore);
+}
+
+function setFinalScore(player: string, score: number) {
+  const scoreElement = document.querySelector(
+    `#finalscore-${player}`
+  );
+  if (scoreElement) {
+    scoreElement.textContent = score.toString();
+  }
+}
+
+function startGameOverTimer() {
+  gameOverTimer = setTimeout(() => {
     closeGameOverOverlay();
   }, 3000);
-  }
 }
 
 export function closeGameOverOverlay() {
@@ -286,6 +318,12 @@ function getFinalScore(player: string): number {
 function openWinnerOverlay() {
   const overlay = document.querySelector('.game__winner');
   if (!overlay) return;
+  getWinnerConditions();
+  setHomeBtn();
+  overlay.classList.add('active');
+}
+
+function getWinnerConditions() {
   const blueScore = getFinalScore("blue");
   const orangeScore = getFinalScore("orange");
   if (blueScore === orangeScore) {
@@ -293,14 +331,12 @@ function openWinnerOverlay() {
     setWinnerIcon("draw");
     setWinnerText("draw");
   } else{
-  const winner = blueScore > orangeScore ? "blue" : "orange"; 
-  setWinner(winner);
-  setWinnerIcon(winner);
-  setWinnerIconContainer(winner);
-  setWinnerText(winner);
-}
-  setHomeBtn();
-  overlay.classList.add('active');
+    const winner = blueScore > orangeScore ? "blue" : "orange"; 
+    setWinner(winner);
+    setWinnerIcon(winner);
+    setWinnerIconContainer(winner);
+    setWinnerText(winner);
+  }
 }
 
 function setWinner(player: "blue" | "orange" | "draw") {
@@ -324,8 +360,10 @@ function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const winnerIconContainer = document.querySelector("#winner-icon-container");
   if (!winnerIconContainer) return;
-  if (selectedTheme === "codeVibes" && player !== "draw"){
+  if (selectedTheme === "codeVibes" && player !== "draw" && screen.width <= 1440){
     winnerIconContainer.innerHTML = `<img src="dist/assets/icons/confetti.svg" alt="">`;
+  } else if (selectedTheme === "codeVibes" && player !== "draw" && screen.width > 1440) {
+    winnerIconContainer.innerHTML = `<img src="dist/assets/icons/confetti_wide.svg" alt="">`;
   }
 }
 
