@@ -3,7 +3,7 @@ import { renderStartscreenLayout } from "../templates/startscreenLayout";
 import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
-import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme } from "./settings";
+import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme, checkStartButton, getSelectedPlayer, getSelectedBoard } from "./settings";
 import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts, resetGameStatus } from "./game";
 import { getExitOverlays, getGameOverOverlay, getWinnerOverlay } from "../templates/exitOverlays";
 
@@ -34,12 +34,26 @@ export function showSettings() {
   attachSettingsListeners();
   getGameThemeImage();
   setDefaultImg();
+  checkStartButton();
   getPlayerSelection();
   getBoardSelection();
   getThemeSelection();
 }
 
+function isGameReady() {
+  const theme = document.querySelector("#theme_selection");
+  const player = document.querySelector("#player_selection");
+  const board = document.querySelector("#board_selection");
+  if (!theme || !player || !board) return false;
+  return (
+    theme.textContent !== "Theme" &&
+    player.textContent !== "Player" &&
+    board.textContent !== "Board"
+  );
+}
+
 function startGame() {
+  if (!isGameReady()) return;
   const selectedTheme = getSelectedTheme();
   renderInMain(renderGameLayout(selectedTheme));
   addOverlays();

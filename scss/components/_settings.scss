@@ -160,6 +160,11 @@
           font-size: 1.5rem;
           font-family: 'Red Rose', sans-serif;
         }
+
+        &.disabled{
+          pointer-events: none;
+          opacity: 0.4;
+        }
       }
 
       &--btn:hover{

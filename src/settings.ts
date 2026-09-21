@@ -93,6 +93,7 @@ setSelection(themeElements);
       if (!themeSpan) return;
       selectedTheme = themeSpan.dataset.theme as keyof typeof themes;
       themeSelection!.textContent = themes[selectedTheme].name;
+      checkStartButton();
     });
   });
 }
@@ -112,6 +113,7 @@ export function getPlayerSelection() {
       selectedPlayer =
         player.querySelector("span")!.textContent!;
       playerSelection!.textContent = selectedPlayer;
+      checkStartButton();
     });
   });
 }
@@ -126,10 +128,21 @@ export function getBoardSelection() {
     board.addEventListener("click", () => {
       selectedBoard = Number(board.querySelector("span")!.textContent!.split(" ")[0]);
       boardSelection!.textContent = board.querySelector("span")!.textContent!;
+      checkStartButton();
     });
   });
 }
 
 export function getSelectedBoard() {
   return selectedBoard;
+}
+
+export function checkStartButton(){
+  const theme = document.querySelector("#theme_selection");
+  const player = document.querySelector("#player_selection");
+  const board = document.querySelector("#board_selection");
+  const startButton = document.querySelector("#start_btn");
+  if(!theme || !player || !board || !startButton) return;
+  const ready = theme.textContent !== "Theme" && player.textContent !== "Player" && board.textContent !== "Board";
+  startButton.classList.toggle("disabled", !ready);
 }
