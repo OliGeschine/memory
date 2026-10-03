@@ -1,3 +1,7 @@
+/**
+ * Contains the available card images for each game theme.
+ * The images are used to create the matching card pairs.
+ */
 export const themeImages = {
   codeVibes: [
     "card_01.svg",
@@ -41,11 +45,17 @@ export const themeImages = {
   ],
 };
 
+/**
+ * Maps each game theme to its corresponding card image folder.
+ */
 export const themeFolders = {
   codeVibes: "code_vibes",
   games: "games",
 };
 
+/**
+ * Defines the available board sizes and their number of cards and pairs.
+ */
 export const boards = {
   16: {
     cards: 16,

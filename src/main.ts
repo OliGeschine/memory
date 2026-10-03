@@ -3,9 +3,11 @@ import { renderStartscreenLayout } from "../templates/startscreenLayout";
 import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
-import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme, checkStartButton, getSelectedPlayer, getSelectedBoard } from "./settings";
-import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts, resetGameStatus } from "./game";
+import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme, checkStartButton} from "./settings";
+import { flippAnimation, setCurrentPlayerImage, initializeCurrentPlayer, setPlayerScoreImages, setPlayerTexts, resetGameStatus } from "./game";
 import { getExitOverlays, getGameOverOverlay, getWinnerOverlay } from "../templates/exitOverlays";
+import { createBoard } from "./gameBoard";
+import { exitGame, quitGame, backToGame } from "./gameExit";
 
 // ========== Initialisierung ==========
 function init() {

@@ -1,0 +1,96 @@
+import "../scss/main.scss";
+import { renderStartscreenLayout } from "../templates/startscreenLayout";
+import { renderSettingsLayout } from "../templates/settingsLayout";
+import { renderGameLayout } from "../templates/gameLayout";
+import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme, checkStartButton } from "./settings";
+import { flippAnimation, setCurrentPlayerImage, exitGame, createBoard, initializeCurrentPlayer, quitGame, backToGame, setPlayerScoreImages, setPlayerTexts, resetGameStatus } from "./game";
+import { getExitOverlays, getGameOverOverlay, getWinnerOverlay } from "../templates/exitOverlays";
+// ========== Initialisierung ==========
+function init() {
+    showStartscreen();
+    resetGameStatus();
+}
+window.addEventListener("DOMContentLoaded", init);
+// ========== Render-Funktionen (nur für das Rendering verantwortlich) ==========
+function renderInMain(html) {
+    const main = document.querySelector("main");
+    if (main) {
+        main.innerHTML = html;
+    }
+}
+// ========== View-Funktionen (Rendering + Event-Listener Setup) ==========
+function showStartscreen() {
+    renderInMain(renderStartscreenLayout());
+    attachStartscreenListeners();
+}
+export function showSettings() {
+    renderInMain(renderSettingsLayout());
+    attachSettingsListeners();
+    getGameThemeImage();
+    setDefaultImg();
+    checkStartButton();
+    getPlayerSelection();
+    getBoardSelection();
+    getThemeSelection();
+}
+function isGameReady() {
+    const theme = document.querySelector("#theme_selection");
+    const player = document.querySelector("#player_selection");
+    const board = document.querySelector("#board_selection");
+    if (!theme || !player || !board)
+        return false;
+    return (theme.textContent !== "Theme" &&
+        player.textContent !== "Player" &&
+        board.textContent !== "Board");
+}
+function startGame() {
+    if (!isGameReady())
+        return;
+    const selectedTheme = getSelectedTheme();
+    renderInMain(renderGameLayout(selectedTheme));
+    addOverlays();
+    initializeCurrentPlayer();
+    setCurrentPlayerImage();
+    setPlayerScoreImages();
+    setPlayerTexts();
+    createBoard();
+    flippAnimation();
+    exitGame();
+    quitGame();
+    backToGame();
+}
+// ========== Event-Listener Setup ==========
+function attachStartscreenListeners() {
+    const startBtn = document.querySelector(".startscreen__btn");
+    if (startBtn) {
+        startBtn.addEventListener("click", showSettings);
+    }
+}
+function attachSettingsListeners() {
+    const startGameBtn = document.querySelector("#start_btn");
+    if (startGameBtn) {
+        startGameBtn.addEventListener("click", startGame);
+    }
+}
+function attachWinnerOverlayListeners() {
+    const homeBtn = document.querySelector(".game__winner--homebtn");
+    if (homeBtn) {
+        homeBtn.addEventListener("click", showStartscreen);
+    }
+}
+function addOverlays() {
+    const selectedTheme = getSelectedTheme();
+    const overlayContainer = document.querySelector(".game__exitoverlay--container");
+    if (overlayContainer) {
+        overlayContainer.innerHTML = getExitOverlays(selectedTheme);
+    }
+    const gameOverOverlayContainer = document.querySelector(".game__gameover--container");
+    if (gameOverOverlayContainer) {
+        gameOverOverlayContainer.innerHTML = getGameOverOverlay(selectedTheme);
+    }
+    const winnerOverlayContainer = document.querySelector(".game__winner--container");
+    if (winnerOverlayContainer) {
+        winnerOverlayContainer.innerHTML = getWinnerOverlay(selectedTheme);
+    }
+    attachWinnerOverlayListeners();
+}

@@ -43,10 +43,18 @@ let selectedPlayer = "";
 let selectedBoard = 16;
 let selectedTheme: keyof typeof themes = "codeVibes";
 
+/**
+ * Returns the currently selected player.
+ * @returns The selected player.
+ */
 export function getSelectedPlayer() {
   return selectedPlayer;
 }
 
+/**
+ * Adds click listeners to the theme selection elements.
+ * Updates the displayed theme image when a theme is selected.
+ */
 export function getGameThemeImage() {
   const themeElements = document.querySelectorAll(
     ".settings__choices--themes span"
@@ -56,7 +64,7 @@ export function getGameThemeImage() {
     theme.addEventListener("click", () => {
       const themeKey = theme.getAttribute("data-theme") as keyof typeof themes;
       if (!themeImage) return;
-      themeImage!.setAttribute(
+      themeImage.setAttribute(
         "src",
         `dist/assets/imgs/${themes[themeKey].image}`
       );
@@ -64,12 +72,22 @@ export function getGameThemeImage() {
   });
 }
 
-export function setDefaultImg(){
-    const themeImage = document.querySelector("#theme_image");
-    if (!themeImage) return;
-    themeImage!.setAttribute("src", `dist/assets/imgs/${themes[selectedTheme].image}`);
+/**
+ * Sets the theme image to the currently selected theme.
+ */
+export function setDefaultImg() {
+  const themeImage = document.querySelector("#theme_image");
+  if (!themeImage) return;
+  themeImage.setAttribute(
+    "src",
+    `dist/assets/imgs/${themes[selectedTheme].image}`
+  );
 }
 
+/**
+ * Adds selection behavior to a group of elements.
+ * @param elements The elements that can be selected.
+ */
 function setSelection(elements: NodeListOf<Element>) {
   elements.forEach((element) => {
     element.addEventListener("click", () => {
@@ -81,6 +99,10 @@ function setSelection(elements: NodeListOf<Element>) {
   });
 }
 
+/**
+ * Adds selection behavior to the available game themes.
+ * Stores the selected theme and updates the settings overview.
+ */
 export function getThemeSelection() {
   const themeSelection = document.querySelector("#theme_selection");
   const themeElements = document.querySelectorAll(
@@ -98,10 +120,18 @@ setSelection(themeElements);
   });
 }
 
+/**
+ * Returns the currently selected game theme.
+ * @returns The selected game theme.
+ */
 export function getSelectedTheme() {
   return selectedTheme;
 }
 
+/**
+ * Adds selection behavior to the available players.
+ * Stores the selected player and updates the settings overview.
+ */
 export function getPlayerSelection() {
   const playerSelection = document.querySelector("#player_selection");
   const playerElements = document.querySelectorAll(
@@ -118,6 +148,10 @@ export function getPlayerSelection() {
   });
 }
 
+/**
+ * Adds selection behavior to the available board sizes.
+ * Stores the selected board size and updates the settings overview.
+ */
 export function getBoardSelection() {
   const boardSelection = document.querySelector("#board_selection");
   const boardElements = document.querySelectorAll(
@@ -133,10 +167,18 @@ export function getBoardSelection() {
   });
 }
 
+/**
+ * Returns the currently selected board size.
+ * @returns The selected board size.
+ */
 export function getSelectedBoard() {
   return selectedBoard;
 }
 
+/**
+ * Updates the state of the start button.
+ * Enables it when a theme, player, and board size are selected.
+ */
 export function checkStartButton(){
   const theme = document.querySelector("#theme_selection");
   const player = document.querySelector("#player_selection");
