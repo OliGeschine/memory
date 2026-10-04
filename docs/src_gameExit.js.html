@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: src/gameExit.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,74 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: src/gameExit.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { showSettings } from "./main";
+import { resetGameStatus } from "./game";
+/**
+ * Adds the event listener for opening the exit overlay.
+ */
+export function exitGame() {
+    const exitBtn = document.querySelector(".game__header--exitBtn");
+    if (exitBtn) {
+        exitBtn.addEventListener("click", () => {
+            openExitOverlay();
+        });
+    }
+}
+/**
+ * Opens the exit confirmation overlay.
+ */
+function openExitOverlay() {
+    const exitOverlay = document.querySelector(".game__exitoverlay");
+    if (!exitOverlay)
+        return;
+    exitOverlay.classList.add("active");
+}
+/**
+ * Closes the exit confirmation overlay.
+ */
+function closeExitOverlay() {
+    const exitOverlay = document.querySelector(".game__exitoverlay");
+    if (!exitOverlay)
+        return;
+    exitOverlay.classList.remove("active");
+}
+/**
+ * Adds the event listener for returning to the current game.
+ */
+export function backToGame() {
+    const backBtn = document.querySelector(".game__exitoverlay--cancel");
+    if (backBtn) {
+        backBtn.addEventListener("click", () => {
+            closeExitOverlay();
+        });
+    }
+}
+/**
+ * Adds the event listener for quitting the current game.
+ * Resets the game and returns to the settings.
+ */
+export function quitGame() {
+    const quitBtn = document.querySelector(".game__exitoverlay--confirm");
+    if (quitBtn) {
+        quitBtn.addEventListener("click", () => {
+            closeExitOverlay();
+            resetGameStatus();
+            showSettings();
+        });
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

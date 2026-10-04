@@ -6,12 +6,18 @@ let currentPlayer: string = "";
 let matchTimer: ReturnType<typeof setTimeout> | null = null;
 let mismatchTimer: ReturnType<typeof setTimeout> | null = null;
 
+/**
+ * Resets the current game state and clears all active game timers.
+ */
 export function resetGameStatus() {
   flippedCards = [];
   currentPlayer = "";
   clearGameTimers();
 }
 
+/**
+ * Clears all active match and mismatch timers.
+ */
 function clearGameTimers() {
   if (matchTimer) {
     clearTimeout(matchTimer);
@@ -23,10 +29,16 @@ function clearGameTimers() {
   }
 }
 
+/**
+ * Initializes the current player based on the selected starting player.
+ */
 export function initializeCurrentPlayer() {
   currentPlayer = getSelectedPlayer().toLowerCase();
 }
 
+/**
+ * Sets the current player image based on the selected player and theme.
+ */
 export function setCurrentPlayerImage() {
   const playerImage = document.querySelector(
     ".game__header--player img"
@@ -37,6 +49,12 @@ export function setCurrentPlayerImage() {
   setPlayerIcon(playerImage, selectedPlayer, selectedTheme);
 }
 
+/**
+ * Sets the player icon based on the selected player and theme.
+ * @param playerImage The image element to be updated.
+ * @param selectedPlayer The selected player.
+ * @param selectedTheme The selected game theme.
+ */
 function setPlayerIcon(
   playerImage: Element,
   selectedPlayer: string,
@@ -50,6 +68,9 @@ function setPlayerIcon(
   );
 }
 
+/**
+ * Sets the score icons for both players based on the selected theme.
+ */
 export function setPlayerScoreImages() {
   const blueImage = document.querySelector("#blue_player_image");
   const orangeImage = document.querySelector("#orange_player_image");
@@ -66,6 +87,10 @@ export function setPlayerScoreImages() {
   );
 }
 
+/**
+ * Adds the card flip behavior to the game board.
+ * Checks for a matching pair when two cards are flipped.
+ */
 export function flippAnimation() {
     const fieldRef = document.querySelector('.game__field');
     if (!fieldRef) return;
@@ -83,6 +108,9 @@ export function flippAnimation() {
     });
 }
 
+/**
+ * Checks whether the two flipped cards form a matching pair.
+ */
 function checkPair() {
   const [firstCard, secondCard] = flippedCards;
   if (firstCard.dataset.card === secondCard.dataset.card) {
@@ -92,6 +120,11 @@ function checkPair() {
   handleMismatch(firstCard, secondCard);
 }
 
+/**
+ * Handles a matching card pair and updates the game state.
+ * @param firstCard The first matching card.
+ * @param secondCard The second matching card.
+ */
 function handleMatch(firstCard: Element, secondCard: Element) {
   firstCard.classList.add("matched");
   secondCard.classList.add("matched");
@@ -100,6 +133,10 @@ function handleMatch(firstCard: Element, secondCard: Element) {
   checkGameOver();
 }
 
+/**
+ * Checks whether all cards have been matched.
+ * Starts the game over timer when the game is finished.
+ */
 function checkGameOver() {
   const boardSize = getSelectedBoard();
   const matchedCards = document.querySelectorAll(".card.matched");
@@ -108,12 +145,21 @@ function checkGameOver() {
   }
 }
 
+/**
+ * Starts the timer for opening the game over overlay.
+ */
 function startMatchTimer() {
   matchTimer = setTimeout(() => {
     openGameOverOverlay();
   }, 1500);
 }
 
+/**
+ * Handles a mismatching card pair.
+ * Flips the cards back and switches the current player.
+ * @param firstCard The first mismatching card.
+ * @param secondCard The second mismatching card.
+ */
 function handleMismatch(firstCard: Element, secondCard: Element) {
   mismatchTimer = setTimeout(() => {
     firstCard.classList.remove("is-flipped");
@@ -123,6 +169,9 @@ function handleMismatch(firstCard: Element, secondCard: Element) {
   }, 800);
 }
 
+/**
+ * Switches the current player and updates the player image.
+ */
 function switchPlayer() {
   const currentPlayerImage = document.querySelector(
     ".game__header--player img"
@@ -139,6 +188,10 @@ function switchPlayer() {
   }
 }
 
+/**
+ * Increases the score of the specified player by one.
+ * @param player The player whose score is updated.
+ */
 function updateScore(player: string) {
   const scoreElement = document.querySelector(
     `#${player.toLowerCase()}-score`
@@ -148,6 +201,9 @@ function updateScore(player: string) {
   scoreElement.textContent = (currentScore + 1).toString();
 }
 
+/**
+ * Sets the player names based on the selected theme.
+ */
 export function setPlayerTexts() {
   const bluePlayerText = document.querySelector("#blue-player-text");
   const orangePlayerText = document.querySelector("#orange-player-text");

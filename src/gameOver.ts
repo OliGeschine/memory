@@ -2,6 +2,10 @@ import {themes, getSelectedBoard, getSelectedTheme} from "./settings";
 
 let gameOverTimer: ReturnType<typeof setTimeout> | null = null;
 
+/**
+ * Opens the game over overlay when all card pairs have been matched.
+ * Updates the final scores and starts the game over timer.
+ */
 export function openGameOverOverlay() {
   const overlay = document.querySelector(".game__gameoveroverlay");
   if (!overlay || !isGameFinished()) return;
@@ -10,12 +14,19 @@ export function openGameOverOverlay() {
   startGameOverTimer();
 }
 
+/**
+ * Checks whether all cards on the game board have been matched.
+ * @returns Whether the game is finished.
+ */
 function isGameFinished() {
   const boardSize = getSelectedBoard();
   const matchedCards = document.querySelectorAll(".card.matched");
   return boardSize === matchedCards.length;
 }
 
+/**
+ * Updates the player icons, names, and scores in the game over overlay.
+ */
 function setGameOverScores() {
   setFinalScoreIcons();
   setFinalPlayerTexts();
@@ -25,6 +36,11 @@ function setGameOverScores() {
   setFinalScore("orange", orangeScore);
 }
 
+/**
+ * Displays a player's final score in the game over overlay.
+ * @param player The player whose score is displayed.
+ * @param score The player's final score.
+ */
 function setFinalScore(player: string, score: number) {
   const scoreElement = document.querySelector(
     `#finalscore-${player}`
@@ -34,12 +50,19 @@ function setFinalScore(player: string, score: number) {
   }
 }
 
+/**
+ * Starts the timer for automatically closing the game over overlay.
+ */
 function startGameOverTimer() {
   gameOverTimer = setTimeout(() => {
     closeGameOverOverlay();
   }, 3000);
 }
 
+/**
+ * Sets the player names in the game over overlay
+ * based on the selected theme.
+ */
 function setFinalPlayerTexts() {
   const finalBluePlayerText = document.querySelector("#final-blue-player-text");
   const finalOrangePlayerText = document.querySelector("#final-orange-player-text");
@@ -49,6 +72,11 @@ function setFinalPlayerTexts() {
   if (finalOrangePlayerText) finalOrangePlayerText.textContent = theme.texts.orangePlayer;
 }
 
+/**
+ * Returns the final score of the specified player.
+ * @param player The player whose score is requested.
+ * @returns The player's final score.
+ */
 function getFinalScore(player: string): number {
   const scoreElement = document.querySelector(
     `#${player.toLowerCase()}-score`
@@ -57,6 +85,10 @@ function getFinalScore(player: string): number {
   return parseInt(scoreElement.textContent || "0", 10);
 }
 
+/**
+ * Sets the player icons in the game over overlay
+ * based on the selected theme.
+ */
 function setFinalScoreIcons() {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
@@ -66,6 +98,9 @@ function setFinalScoreIcons() {
   if (orangeIcon) orangeIcon.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
 }
 
+/**
+ * Opens the winner overlay and updates its content.
+ */
 function openWinnerOverlay() {
   const overlay = document.querySelector('.game__winner');
   if (!overlay) return;
@@ -74,6 +109,9 @@ function openWinnerOverlay() {
   overlay.classList.add('active');
 }
 
+/**
+ * Closes the game over overlay and opens the winner overlay.
+ */
 export function closeGameOverOverlay() {
   const overlay = document.querySelector('.game__gameoveroverlay');
   if (!overlay) return;
@@ -81,6 +119,10 @@ export function closeGameOverOverlay() {
   openWinnerOverlay();
 }
 
+/**
+ * Determines the winner based on the final scores
+ * and updates the winner display.
+ */
 function getWinnerConditions() {
   const blueScore = getFinalScore("blue");
   const orangeScore = getFinalScore("orange");
@@ -97,6 +139,10 @@ function getWinnerConditions() {
   }
 }
 
+/**
+ * Sets the winner name and applies the corresponding winner style.
+ * @param player The winning player or draw result.
+ */
 function setWinner(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
@@ -107,6 +153,10 @@ function setWinner(player: "blue" | "orange" | "draw") {
   }
 }
 
+/**
+ * Sets the winner icon based on the result and selected theme.
+ * @param player The winning player or draw result.
+ */
 function setWinnerIcon(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
@@ -114,6 +164,11 @@ function setWinnerIcon(player: "blue" | "orange" | "draw") {
   if (winnerIconElement) winnerIconElement.setAttribute("src", `dist/assets/icons/${theme.icons[`${player.toLowerCase()}Winner` as keyof typeof theme.icons]}`);
 }
 
+/**
+ * Adds the winner decoration for the Code Vibes theme.
+ * Selects the decoration based on the screen width.
+ * @param player The winning player or draw result.
+ */
 function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const winnerIconContainer = document.querySelector("#winner-icon-container");
@@ -125,6 +180,10 @@ function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   }
 }
 
+/**
+ * Sets the winner message based on the game result.
+ * @param player The winning player or draw result.
+ */
 function setWinnerText(player: "blue" | "orange" | "draw") {
   const winnerTextElement = document.querySelector("#winner-text");
   if (!winnerTextElement) return;
@@ -135,6 +194,9 @@ function setWinnerText(player: "blue" | "orange" | "draw") {
   }
 }
 
+/**
+ * Sets the home button text based on the selected theme.
+ */
 function setHomeBtn() {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];

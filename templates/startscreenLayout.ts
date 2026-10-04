@@ -1,3 +1,7 @@
+/**
+ * Creates the HTML layout for the startscreen.
+ * @returns The HTML content for the startscreen.
+ */
 export function renderStartscreenLayout(): string {
     return `
    <section class="startscreen">

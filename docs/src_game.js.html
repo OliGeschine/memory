@@ -1,4 +1,32 @@
-import { themes, getSelectedPlayer, getSelectedBoard, getSelectedTheme } from "./settings";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/game.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/game.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { themes, getSelectedPlayer, getSelectedBoard, getSelectedTheme } from "./settings";
 import { openGameOverOverlay } from "./gameOver";
 let flippedCards = [];
 let currentPlayer = "";
@@ -189,3 +217,26 @@ export function setPlayerTexts() {
     if (orangePlayerText)
         orangePlayerText.textContent = theme.texts.orangePlayer;
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addOverlays">addOverlays</a></li><li><a href="global.html#attachSettingsListeners">attachSettingsListeners</a></li><li><a href="global.html#attachStartscreenListeners">attachStartscreenListeners</a></li><li><a href="global.html#attachWinnerOverlayListeners">attachWinnerOverlayListeners</a></li><li><a href="global.html#backToGame">backToGame</a></li><li><a href="global.html#boards">boards</a></li><li><a href="global.html#checkGameOver">checkGameOver</a></li><li><a href="global.html#checkPair">checkPair</a></li><li><a href="global.html#checkStartButton">checkStartButton</a></li><li><a href="global.html#clearGameTimers">clearGameTimers</a></li><li><a href="global.html#closeExitOverlay">closeExitOverlay</a></li><li><a href="global.html#closeGameOverOverlay">closeGameOverOverlay</a></li><li><a href="global.html#createBoard">createBoard</a></li><li><a href="global.html#createCardImages">createCardImages</a></li><li><a href="global.html#exitGame">exitGame</a></li><li><a href="global.html#flippAnimation">flippAnimation</a></li><li><a href="global.html#getBoardSelection">getBoardSelection</a></li><li><a href="global.html#getExitOverlays">getExitOverlays</a></li><li><a href="global.html#getFinalScore">getFinalScore</a></li><li><a href="global.html#getGameOverOverlay">getGameOverOverlay</a></li><li><a href="global.html#getGameThemeImage">getGameThemeImage</a></li><li><a href="global.html#getPlayerSelection">getPlayerSelection</a></li><li><a href="global.html#getSelectedBoard">getSelectedBoard</a></li><li><a href="global.html#getSelectedPlayer">getSelectedPlayer</a></li><li><a href="global.html#getSelectedTheme">getSelectedTheme</a></li><li><a href="global.html#getThemeSelection">getThemeSelection</a></li><li><a href="global.html#getWinnerConditions">getWinnerConditions</a></li><li><a href="global.html#getWinnerOverlay">getWinnerOverlay</a></li><li><a href="global.html#handleMatch">handleMatch</a></li><li><a href="global.html#handleMismatch">handleMismatch</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initializeCurrentPlayer">initializeCurrentPlayer</a></li><li><a href="global.html#isGameFinished">isGameFinished</a></li><li><a href="global.html#isGameReady">isGameReady</a></li><li><a href="global.html#openExitOverlay">openExitOverlay</a></li><li><a href="global.html#openGameOverOverlay">openGameOverOverlay</a></li><li><a href="global.html#openWinnerOverlay">openWinnerOverlay</a></li><li><a href="global.html#quitGame">quitGame</a></li><li><a href="global.html#renderCards">renderCards</a></li><li><a href="global.html#renderGameLayout">renderGameLayout</a></li><li><a href="global.html#renderInMain">renderInMain</a></li><li><a href="global.html#renderSettingsLayout">renderSettingsLayout</a></li><li><a href="global.html#renderStartscreenLayout">renderStartscreenLayout</a></li><li><a href="global.html#resetGameStatus">resetGameStatus</a></li><li><a href="global.html#setCurrentPlayerImage">setCurrentPlayerImage</a></li><li><a href="global.html#setDefaultImg">setDefaultImg</a></li><li><a href="global.html#setFinalPlayerTexts">setFinalPlayerTexts</a></li><li><a href="global.html#setFinalScore">setFinalScore</a></li><li><a href="global.html#setFinalScoreIcons">setFinalScoreIcons</a></li><li><a href="global.html#setGameOverScores">setGameOverScores</a></li><li><a href="global.html#setHomeBtn">setHomeBtn</a></li><li><a href="global.html#setPlayerIcon">setPlayerIcon</a></li><li><a href="global.html#setPlayerScoreImages">setPlayerScoreImages</a></li><li><a href="global.html#setPlayerTexts">setPlayerTexts</a></li><li><a href="global.html#setSelection">setSelection</a></li><li><a href="global.html#setWinner">setWinner</a></li><li><a href="global.html#setWinnerIcon">setWinnerIcon</a></li><li><a href="global.html#setWinnerIconContainer">setWinnerIconContainer</a></li><li><a href="global.html#setWinnerText">setWinnerText</a></li><li><a href="global.html#showSettings">showSettings</a></li><li><a href="global.html#showStartscreen">showStartscreen</a></li><li><a href="global.html#shuffleCards">shuffleCards</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#startGameOverTimer">startGameOverTimer</a></li><li><a href="global.html#startMatchTimer">startMatchTimer</a></li><li><a href="global.html#switchPlayer">switchPlayer</a></li><li><a href="global.html#themeFolders">themeFolders</a></li><li><a href="global.html#themeImages">themeImages</a></li><li><a href="global.html#updateScore">updateScore</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Sun Oct 04 2026 19:03:35 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

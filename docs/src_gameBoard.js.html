@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: src/gameBoard.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,79 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: src/gameBoard.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { getSelectedBoard, getSelectedTheme } from "./settings";
+import { themeImages, boards, themeFolders } from "./boards";
+/**
+ * Shuffles the provided cards into a random order.
+ * @param cards The cards to be shuffled.
+ * @returns The shuffled cards.
+ */
+function shuffleCards(cards) {
+    return cards.sort(() => Math.random() - 0.5);
+}
+/**
+ * Creates the card image list for the selected board size and theme.
+ * Duplicates each selected image to create matching pairs.
+ * @param boardSize The selected number of cards.
+ * @param selectedTheme The selected game theme.
+ * @returns The card images required for the game board.
+ */
+function createCardImages(boardSize, selectedTheme) {
+    const pairs = boards[boardSize].pairs;
+    const selectedImages = themeImages[selectedTheme].slice(0, pairs);
+    return [...selectedImages, ...selectedImages];
+}
+/**
+ * Creates the game board based on the selected size and theme.
+ * Generates, shuffles, and renders the required cards.
+ */
+export function createBoard() {
+    const boardSize = getSelectedBoard();
+    const selectedTheme = getSelectedTheme();
+    const cards = createCardImages(boardSize, selectedTheme);
+    const shuffledCards = shuffleCards(cards);
+    renderCards(shuffledCards, boardSize, selectedTheme);
+}
+/**
+ * Renders the cards on the game board.
+ * @param cards The card images to be rendered.
+ * @param boardSize The selected number of cards.
+ * @param selectedTheme The selected game theme.
+ */
+function renderCards(cards, boardSize, selectedTheme) {
+    const gameField = document.querySelector("#game_field");
+    if (!gameField)
+        return;
+    gameField.innerHTML = "";
+    gameField.className = `game__field board--${boardSize}`;
+    const themeFolder = themeFolders[selectedTheme];
+    cards.forEach((image) => {
+        gameField.innerHTML += `
+      &lt;button class="card" data-card="${image}">
+        &lt;div class="card__inner">
+          &lt;div class="card__face">
+          &lt;img src="dist/assets/cards/${themeFolder}/${themeFolder}_back.svg" alt="">
+          &lt;/div>
+          &lt;div class="card__face card__face--back">
+            &lt;img src="dist/assets/cards/${themeFolder}/${image}" alt="">
+          &lt;/div>
+        &lt;/div>
+      &lt;/button>
+    `;
+    });
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

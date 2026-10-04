@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: templates/startscreenLayout.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,42 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: templates/startscreenLayout.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Creates the HTML layout for the startscreen.
+ * @returns The HTML content for the startscreen.
+ */
+export function renderStartscreenLayout() {
+    return `
+   &lt;section class="startscreen">
 
+        &lt;div class="headline">
+            &lt;h2>It's play time.&lt;/h2>
+            &lt;h1>Ready to play?&lt;/h1>
+        &lt;/div>
 
-    <h3> </h3>
+        &lt;div id="startscreen__btn" class="startscreen__btn">
+            &lt;img class="controller__icon" src="dist/assets/icons/controller.svg" />
+            &lt;span class="startscreen__btn--play">Play&lt;/span>
+            &lt;img class="startscreen__arrow" src="dist/assets/icons/arrow_right.svg" />
+            &lt;img class="startscreen__arrow startscreen__arrow--hover" src="dist/assets/icons/arrow_right_active.svg" />
+        &lt;/div>
 
+        &lt;img class="startscreen__img" src="dist/assets/imgs/controller.svg" />
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    &lt;/section>`;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

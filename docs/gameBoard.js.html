@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: boards.js</title>
+    <title>JSDoc: Source: gameBoard.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: boards.js</h1>
+    <h1 class="page-title">Source: gameBoard.js</h1>
 
     
 
@@ -26,76 +26,67 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Contains the available card images for each game theme.
- * The images are used to create the matching card pairs.
- */
-export const themeImages = {
-    codeVibes: [
-        "card_01.svg",
-        "card_02.svg",
-        "card_03.svg",
-        "card_04.svg",
-        "card_05.svg",
-        "card_06.svg",
-        "card_07.svg",
-        "card_08.svg",
-        "card_09.svg",
-        "card_10.svg",
-        "card_11.svg",
-        "card_12.svg",
-        "card_13.svg",
-        "card_14.svg",
-        "card_15.svg",
-        "card_16.svg",
-        "card_17.svg",
-        "card_18.svg",
-    ],
-    games: [
-        "card_01.svg",
-        "card_02.svg",
-        "card_03.svg",
-        "card_04.svg",
-        "card_05.svg",
-        "card_06.svg",
-        "card_07.svg",
-        "card_08.svg",
-        "card_09.svg",
-        "card_10.svg",
-        "card_11.svg",
-        "card_12.svg",
-        "card_13.svg",
-        "card_14.svg",
-        "card_15.svg",
-        "card_16.svg",
-        "card_17.svg",
-        "card_18.svg",
-    ],
-};
+            <pre class="prettyprint source linenums"><code>import { getSelectedBoard, getSelectedTheme } from "./settings";
+import { themeImages, boards, themeFolders } from "./boards";
 /**
- * Maps each game theme to its corresponding card image folder.
+ * Shuffles the provided cards into a random order.
+ * @param cards The cards to be shuffled.
+ * @returns The shuffled cards.
  */
-export const themeFolders = {
-    codeVibes: "code_vibes",
-    games: "games",
-};
+function shuffleCards(cards) {
+    return cards.sort(() => Math.random() - 0.5);
+}
 /**
- * Defines the available board sizes and their number of cards and pairs.
+ * Creates the card image list for the selected board size and theme.
+ * Duplicates each selected image to create matching pairs.
+ * @param boardSize The selected number of cards.
+ * @param selectedTheme The selected game theme.
+ * @returns The card images required for the game board.
  */
-export const boards = {
-    16: {
-        cards: 16,
-        pairs: 8,
-    },
-    24: {
-        cards: 24,
-        pairs: 12,
-    },
-    36: {
-        cards: 36,
-        pairs: 18,
-    },
-};
+function createCardImages(boardSize, selectedTheme) {
+    const pairs = boards[boardSize].pairs;
+    const selectedImages = themeImages[selectedTheme].slice(0, pairs);
+    return [...selectedImages, ...selectedImages];
+}
+/**
+ * Creates the game board based on the selected size and theme.
+ * Generates, shuffles, and renders the required cards.
+ */
+export function createBoard() {
+    const boardSize = getSelectedBoard();
+    const selectedTheme = getSelectedTheme();
+    const cards = createCardImages(boardSize, selectedTheme);
+    const shuffledCards = shuffleCards(cards);
+    renderCards(shuffledCards, boardSize, selectedTheme);
+}
+/**
+ * Renders the cards on the game board.
+ * @param cards The card images to be rendered.
+ * @param boardSize The selected number of cards.
+ * @param selectedTheme The selected game theme.
+ */
+function renderCards(cards, boardSize, selectedTheme) {
+    const gameField = document.querySelector("#game_field");
+    if (!gameField)
+        return;
+    gameField.innerHTML = "";
+    gameField.className = `game__field board--${boardSize}`;
+    const themeFolder = themeFolders[selectedTheme];
+    cards.forEach((image) => {
+        gameField.innerHTML += `
+      &lt;button class="card" data-card="${image}">
+        &lt;div class="card__inner">
+          &lt;div class="card__face">
+          &lt;img src="dist/assets/cards/${themeFolder}/${themeFolder}_back.svg" alt="">
+          &lt;/div>
+          &lt;div class="card__face card__face--back">
+            &lt;img src="dist/assets/cards/${themeFolder}/${image}" alt="">
+          &lt;/div>
+        &lt;/div>
+      &lt;/button>
+    `;
+    });
+}
 </code></pre>
         </article>
     </section>

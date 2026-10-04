@@ -1,3 +1,7 @@
+/**
+ * Creates the HTML layout for the settings view.
+ * @returns The HTML content for the settings view.
+ */
 export function renderSettingsLayout(): string {
   return `
     <section class="settings">

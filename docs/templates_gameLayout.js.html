@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: templates/gameLayout.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,57 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: templates/gameLayout.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Creates the HTML layout for the game view.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the game view.
+ */
+export function renderGameLayout(selectedTheme) {
+    return `
+    &lt;section id="game" class="game theme--${selectedTheme}">
+    &lt;div class="game__header">
+        &lt;div class="game__header__score">
+            &lt;div class="game__header__score--player">
+                &lt;img id="blue_player_image">
+                &lt;div class="game__header__score--player--blue">
+                &lt;span id="blue-player-text">&lt;/span>
+                &lt;span id="blue-score">0&lt;/span>&lt;/div>
+            &lt;/div>
+            &lt;div class="game__header__score--player">
+                &lt;img id="orange_player_image">
+                &lt;div class="game__header__score--player--orange">
+                &lt;span id="orange-player-text">&lt;/span>
+                &lt;span id="orange-score">0&lt;/span>&lt;/div>
+            &lt;/div>
+        &lt;/div>
+        &lt;div class="game__header--player">
+            &lt;span>Current player:&lt;/span>
+            &lt;img>
+        &lt;/div>
+        &lt;div class="game__header--exitBtn">
+            &lt;img src="dist/assets/icons/exit.svg">
+            &lt;div>Exit Game&lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="game__field" id="game_field">&lt;/div>
+    &lt;div class="game__exitoverlay--container">&lt;/div>
+    &lt;div class="game__gameover--container">&lt;/div>
+    &lt;div class="game__winner--container">&lt;/div>
+    &lt;/section>
+    `;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

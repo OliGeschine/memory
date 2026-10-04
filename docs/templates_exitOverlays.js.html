@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: templates/exitOverlays.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,82 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: templates/exitOverlays.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Creates the HTML layout for the exit confirmation overlay.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the exit confirmation overlay.
+ */
+export function getExitOverlays(selectedTheme) {
+    return `
+    &lt;div class="game__exitoverlay theme--${selectedTheme}">
+        &lt;div class="game__exitoverlay--content">
+        &lt;span>Are you sure you want&lt;br/>to quit the game?&lt;/span>
+        &lt;div class="game__exitoverlay--buttons">
+            &lt;button class="game__exitoverlay--cancel">Back to game&lt;/button>
+            &lt;button class="game__exitoverlay--confirm">Exit game&lt;/button>
+        &lt;/div>
+    &lt;/div>
+    &lt;/div>`;
+}
+/**
+ * Creates the HTML layout for the game over overlay.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the game over overlay.
+ */
+export function getGameOverOverlay(selectedTheme) {
+    return `
+    &lt;div class="game__gameoveroverlay theme--${selectedTheme}">
+        &lt;div class="game__gameoveroverlay--content">
+            &lt;h5>Game Over&lt;/h5>
+            &lt;span>Final score&lt;/span>
+            &lt;div class="game__header__score">
+             &lt;div class="game__header__score--player">
+                &lt;img id="finalscore-blue-icon">
+                &lt;div class="game__header__score--player--blue">
+                &lt;span id="final-blue-player-text">&lt;/span>
+                &lt;span id="finalscore-blue">0&lt;/span>&lt;/div>
+            &lt;/div>
+            &lt;div class="game__header__score--player">
+                &lt;img id="finalscore-orange-icon">
+                &lt;div class="game__header__score--player--orange">
+                &lt;span id="final-orange-player-text">&lt;/span>
+                &lt;span id="finalscore-orange">0&lt;/span>&lt;/div>
+            &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>`;
+}
+/**
+ * Creates the HTML layout for the winner overlay.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the winner overlay.
+ */
+export function getWinnerOverlay(selectedTheme) {
+    return `
+    &lt;div class="game__winner theme--${selectedTheme}">
+        &lt;div class="game__winner--content">
+            &lt;div id="winner-icon-container">&lt;/div>
+            &lt;span id="winner-text">&lt;/span>
+            &lt;span id="winner-name">&lt;/span>
+            &lt;img id="winner-icon">
+            &lt;div class="game__winner--homebtn">
+                &lt;span id="homebtn-text">&lt;/span>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>`;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

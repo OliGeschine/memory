@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: templates/settingsLayout.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,114 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: templates/settingsLayout.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Creates the HTML layout for the settings view.
+ * @returns The HTML content for the settings view.
+ */
+export function renderSettingsLayout() {
+    return `
+    &lt;section class="settings">
 
+        &lt;div class="settings__headline">
+            &lt;h3>Settings&lt;/h3>
+            &lt;img class="settings__img" src="dist/assets/icons/settings_h3_line.svg"/>
+        &lt;/div>
 
-    <h3> </h3>
+    &lt;div class="settings__main">
+        &lt;div class="settings__overview">
+            &lt;div class="settings__choices">
+                &lt;div class="settings__choices--headline">
+                    &lt;img class="" src="dist/assets/icons/palette.svg"/>
+                    &lt;h4> Game themes&lt;/h4>
+                &lt;/div>
+                &lt;div class="settings__choices--themes">
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span data-theme="codeVibes">Code vibes theme&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span data-theme="games">Gaming theme&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="settings__choices">
+                &lt;div class="settings__choices--headline">
+                    &lt;img class="" src="dist/assets/icons/chess_pawn.svg"/>
+                    &lt;h4>Choose player&lt;/h4>
+                &lt;/div>
+                &lt;div class="settings__choices--players">
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span>Blue&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span>Orange&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="settings__choices">
+                &lt;div class="settings__choices--headline">
+                    &lt;img class="" src="dist/assets/icons/board.svg"/>
+                    &lt;h4>Board size&lt;/h4>
+                &lt;/div>
+                &lt;div class="settings__choices--boards">
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span>16 cards&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span>24 cards&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                    &lt;div class="settings__choices__list">
+                        &lt;div class="settings__choices__circle">&lt;/div>
+                        &lt;span>36 cards&lt;/span>
+                        &lt;div class="settings__choices__marker">&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+        &lt;div class="settings__selection">
+            &lt;div class="settings__theme">
+                &lt;img class="settings__theme--img" id="theme_image" src="" alt="selected game theme">
+            &lt;/div>
+            &lt;div class="settings__selection__overview">
+                &lt;span id="theme_selection" class="settings__selection__overview--theme">Theme&lt;/span>
+                &lt;img class="settings__selection__overview--theme--img" src="dist/assets/icons/overview_line.svg" alt="selected game theme">
+                &lt;span id="player_selection" class="settings__selection__overview--player">Player&lt;/span>
+                &lt;img class="settings__selection__overview--player--img" src="dist/assets/icons/overview_line.svg" alt="selected player">
+                &lt;span id="board_selection" class="settings__selection__overview--board">Board&lt;/span>
+                &lt;div id="start_btn" class="settings__selection__overview--btn disabled">
+                    &lt;img src="dist/assets/icons/play_icon.svg" alt="game">
+                    &lt;span>Start&lt;/span>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    &lt;/section>
+    `;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

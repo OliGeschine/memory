@@ -1,3 +1,8 @@
+/**
+ * Creates the HTML layout for the game view.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the game view.
+ */
 export function renderGameLayout(selectedTheme) {
     return `
     <section id="game" class="game theme--${selectedTheme}">

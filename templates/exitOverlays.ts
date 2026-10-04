@@ -1,3 +1,8 @@
+/**
+ * Creates the HTML layout for the exit confirmation overlay.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the exit confirmation overlay.
+ */
 export function getExitOverlays(selectedTheme: string): string {
     return `
     <div class="game__exitoverlay theme--${selectedTheme}">
@@ -11,6 +16,11 @@ export function getExitOverlays(selectedTheme: string): string {
     </div>`;
 }
 
+/**
+ * Creates the HTML layout for the game over overlay.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the game over overlay.
+ */
 export function getGameOverOverlay(selectedTheme: string): string {
     return `
     <div class="game__gameoveroverlay theme--${selectedTheme}">
@@ -35,6 +45,11 @@ export function getGameOverOverlay(selectedTheme: string): string {
     </div>`;
 }
 
+/**
+ * Creates the HTML layout for the winner overlay.
+ * @param selectedTheme The selected game theme.
+ * @returns The HTML content for the winner overlay.
+ */
 export function getWinnerOverlay(selectedTheme: string): string {
     return `
     <div class="game__winner theme--${selectedTheme}">
