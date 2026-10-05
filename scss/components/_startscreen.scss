@@ -1,11 +1,20 @@
 .startscreen {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    background-color: #303131;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+
+    &::before{
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-color: #303131;
+        z-index: -1;
+    }
 
     &__btn {
         display: flex;

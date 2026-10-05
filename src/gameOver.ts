@@ -173,11 +173,9 @@ function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const winnerIconContainer = document.querySelector("#winner-icon-container");
   if (!winnerIconContainer) return;
-  if (selectedTheme === "codeVibes" && player !== "draw" && screen.width <= 1440){
-    winnerIconContainer.innerHTML = `<img src="dist/assets/icons/confetti.svg" alt="">`;
-  } else if (selectedTheme === "codeVibes" && player !== "draw" && screen.width > 1440) {
-    winnerIconContainer.innerHTML = `<img src="dist/assets/icons/confetti_wide.svg" alt="">`;
-  }
+  if (selectedTheme !== "codeVibes" && player === "draw") return;
+  const confettiImg = window.innerWidth <= 1440 ? "confetti.svg" : "confetti_wide.svg";
+  winnerIconContainer.innerHTML = `<img src="dist/assets/icons/${confettiImg}" alt="">`;
 }
 
 /**
