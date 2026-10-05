@@ -3,16 +3,7 @@
 @use './layout/gameOverOverlay';
 @use './layout/winnerOverlay';
 
-*{
-    // outline: 1px solid red; 
-}
-
 body {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // flex-direction: column;
-    // height: 100vh;
     min-height: 100vh;
     color: #fff;
     margin: 0;
