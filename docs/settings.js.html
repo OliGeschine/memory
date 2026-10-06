@@ -88,7 +88,7 @@ export function getGameThemeImage() {
             const themeKey = theme.getAttribute("data-theme");
             if (!themeImage)
                 return;
-            themeImage.setAttribute("src", `dist/assets/imgs/${themes[themeKey].image}`);
+            themeImage.setAttribute("src", `/memory/assets/imgs/${themes[themeKey].image}`);
         });
     });
 }
@@ -99,7 +99,7 @@ export function setDefaultImg() {
     const themeImage = document.querySelector("#theme_image");
     if (!themeImage)
         return;
-    themeImage.setAttribute("src", `dist/assets/imgs/${themes[selectedTheme].image}`);
+    themeImage.setAttribute("src", `/memory/assets/imgs/${themes[selectedTheme].image}`);
 }
 /**
  * Adds selection behavior to a group of elements.

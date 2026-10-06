@@ -79,7 +79,7 @@ export function setCurrentPlayerImage() {
 function setPlayerIcon(playerImage, selectedPlayer, selectedTheme) {
     const theme = themes[selectedTheme];
     const player = selectedPlayer.toLowerCase();
-    playerImage.setAttribute("src", `dist/assets/icons/${theme.icons[player]}`);
+    playerImage.setAttribute("src", `/memory/assets/icons/${theme.icons[player]}`);
 }
 /**
  * Sets the score icons for both players based on the selected theme.
@@ -91,8 +91,8 @@ export function setPlayerScoreImages() {
         return;
     const selectedTheme = getSelectedTheme();
     const theme = themes[selectedTheme];
-    blueImage.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
-    orangeImage.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
+    blueImage.setAttribute("src", `/memory/assets/icons/${theme.icons.blue}`);
+    orangeImage.setAttribute("src", `/memory/assets/icons/${theme.icons.orange}`);
 }
 /**
  * Adds the card flip behavior to the game board.
@@ -186,11 +186,11 @@ function switchPlayer() {
         return;
     if (currentPlayer === "blue") {
         currentPlayer = "orange";
-        currentPlayerImage.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
+        currentPlayerImage.setAttribute("src", `/memory/assets/icons/${theme.icons.orange}`);
     }
     else {
         currentPlayer = "blue";
-        currentPlayerImage.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
+        currentPlayerImage.setAttribute("src", `/memory/assets/icons/${theme.icons.blue}`);
     }
 }
 /**

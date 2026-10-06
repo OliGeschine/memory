@@ -94,8 +94,8 @@ function setFinalScoreIcons() {
   const theme = themes[selectedTheme];
   const blueIcon = document.querySelector("#finalscore-blue-icon");
   const orangeIcon = document.querySelector("#finalscore-orange-icon");
-  if (blueIcon) blueIcon.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
-  if (orangeIcon) orangeIcon.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
+  if (blueIcon) blueIcon.setAttribute("src", `/memory/assets/icons/${theme.icons.blue}`);
+  if (orangeIcon) orangeIcon.setAttribute("src", `/memory/assets/icons/${theme.icons.orange}`);
 }
 
 /**
@@ -161,7 +161,7 @@ function setWinnerIcon(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const theme = themes[selectedTheme];
   const winnerIconElement = document.querySelector("#winner-icon");
-  if (winnerIconElement) winnerIconElement.setAttribute("src", `dist/assets/icons/${theme.icons[`${player.toLowerCase()}Winner` as keyof typeof theme.icons]}`);
+  if (winnerIconElement) winnerIconElement.setAttribute("src", `/memory/assets/icons/${theme.icons[`${player.toLowerCase()}Winner` as keyof typeof theme.icons]}`);
 }
 
 /**
@@ -175,7 +175,7 @@ function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   if (!winnerIconContainer) return;
   if (selectedTheme !== "codeVibes" && player === "draw") return;
   const confettiImg = window.innerWidth <= 1440 ? "confetti.svg" : "confetti_wide.svg";
-  winnerIconContainer.innerHTML = `<img src="dist/assets/icons/${confettiImg}" alt="">`;
+  winnerIconContainer.innerHTML = `<img src="/memory/assets/icons/${confettiImg}" alt="">`;
 }
 
 /**

@@ -64,7 +64,7 @@ function setPlayerIcon(
   const player = selectedPlayer.toLowerCase() as "blue" | "orange";
   playerImage.setAttribute(
     "src",
-    `dist/assets/icons/${theme.icons[player]}`
+    `/memory/assets/icons/${theme.icons[player]}`
   );
 }
 
@@ -79,11 +79,11 @@ export function setPlayerScoreImages() {
   const theme = themes[selectedTheme];
   blueImage.setAttribute(
     "src",
-    `dist/assets/icons/${theme.icons.blue}`
+    `/memory/assets/icons/${theme.icons.blue}`
   );
   orangeImage.setAttribute(
     "src",
-    `dist/assets/icons/${theme.icons.orange}`
+    `/memory/assets/icons/${theme.icons.orange}`
   );
 }
 
@@ -181,10 +181,10 @@ function switchPlayer() {
   if (!currentPlayerImage) return;
   if (currentPlayer === "blue") {
     currentPlayer = "orange";
-    currentPlayerImage.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
+    currentPlayerImage.setAttribute("src", `/memory/assets/icons/${theme.icons.orange}`);
   } else {
     currentPlayer = "blue";
-    currentPlayerImage.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
+    currentPlayerImage.setAttribute("src", `/memory/assets/icons/${theme.icons.blue}`);
   }
 }
 

@@ -66,7 +66,7 @@ export function getGameThemeImage() {
       if (!themeImage) return;
       themeImage.setAttribute(
         "src",
-        `dist/assets/imgs/${themes[themeKey].image}`
+        `/memory/assets/imgs/${themes[themeKey].image}`
       );
     });
   });
@@ -80,7 +80,7 @@ export function setDefaultImg() {
   if (!themeImage) return;
   themeImage.setAttribute(
     "src",
-    `dist/assets/imgs/${themes[selectedTheme].image}`
+    `/memory/assets/imgs/${themes[selectedTheme].image}`
   );
 }
 

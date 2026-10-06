@@ -114,9 +114,9 @@ function setFinalScoreIcons() {
     const blueIcon = document.querySelector("#finalscore-blue-icon");
     const orangeIcon = document.querySelector("#finalscore-orange-icon");
     if (blueIcon)
-        blueIcon.setAttribute("src", `dist/assets/icons/${theme.icons.blue}`);
+        blueIcon.setAttribute("src", `/memory/assets/icons/${theme.icons.blue}`);
     if (orangeIcon)
-        orangeIcon.setAttribute("src", `dist/assets/icons/${theme.icons.orange}`);
+        orangeIcon.setAttribute("src", `/memory/assets/icons/${theme.icons.orange}`);
 }
 /**
  * Opens the winner overlay and updates its content.
@@ -181,7 +181,7 @@ function setWinnerIcon(player) {
     const theme = themes[selectedTheme];
     const winnerIconElement = document.querySelector("#winner-icon");
     if (winnerIconElement)
-        winnerIconElement.setAttribute("src", `dist/assets/icons/${theme.icons[`${player.toLowerCase()}Winner`]}`);
+        winnerIconElement.setAttribute("src", `/memory/assets/icons/${theme.icons[`${player.toLowerCase()}Winner`]}`);
 }
 /**
  * Adds the winner decoration for the Code Vibes theme.
@@ -194,10 +194,10 @@ function setWinnerIconContainer(player) {
     if (!winnerIconContainer)
         return;
     if (selectedTheme === "codeVibes" &amp;&amp; player !== "draw" &amp;&amp; screen.width &lt;= 1440) {
-        winnerIconContainer.innerHTML = `&lt;img src="dist/assets/icons/confetti.svg" alt="">`;
+        winnerIconContainer.innerHTML = `&lt;img src="/memory/assets/icons/confetti.svg" alt="">`;
     }
     else if (selectedTheme === "codeVibes" &amp;&amp; player !== "draw" &amp;&amp; screen.width > 1440) {
-        winnerIconContainer.innerHTML = `&lt;img src="dist/assets/icons/confetti_wide.svg" alt="">`;
+        winnerIconContainer.innerHTML = `&lt;img src="/memory/assets/icons/confetti_wide.svg" alt="">`;
     }
 }
 /**

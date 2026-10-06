@@ -26,7 +26,7 @@ export function renderGameLayout(selectedTheme: string): string {
             <img>
         </div>
         <div class="game__header--exitBtn">
-            <img src="dist/assets/icons/exit.svg">
+            <img src="/memory/assets/icons/exit.svg">
             <div>Exit Game</div>
         </div>
     </div>
