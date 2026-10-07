@@ -1,5 +1,6 @@
 import { getSelectedBoard, getSelectedTheme } from "./settings";
 import { themeImages, boards, themeFolders } from "./boards";
+import {getGameFieldLayout} from "../templates/gameFieldLayout";
 
 /**
  * Shuffles the provided cards into a random order.
@@ -48,17 +49,6 @@ function renderCards(cards: string[], boardSize: number, selectedTheme: keyof ty
   gameField.className = `game__field board--${boardSize}`;
   const themeFolder = themeFolders[selectedTheme];
   cards.forEach((image) => {
-    gameField.innerHTML += `
-      <button class="card" data-card="${image}">
-        <div class="card__inner">
-          <div class="card__face">
-          <img src="/memory/assets/cards/${themeFolder}/${themeFolder}_back.svg" alt="">
-          </div>
-          <div class="card__face card__face--back">
-            <img src="/memory/assets/cards/${themeFolder}/${image}" alt="">
-          </div>
-        </div>
-      </button>
-    `;
+    gameField.innerHTML += getGameFieldLayout(image, themeFolder);
   });
 }
