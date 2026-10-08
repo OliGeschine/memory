@@ -110,12 +110,9 @@ function openWinnerOverlay() {
 }
 
 /**
- * Closes the game over overlay and opens the winner overlay.
+ * Opens the winner overlay above the game over overlay.
  */
 export function closeGameOverOverlay() {
-  const overlay = document.querySelector('.game__gameoveroverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
   openWinnerOverlay();
 }
 
@@ -173,7 +170,8 @@ function setWinnerIconContainer(player: "blue" | "orange" | "draw") {
   const selectedTheme = getSelectedTheme();
   const winnerIconContainer = document.querySelector("#winner-icon-container");
   if (!winnerIconContainer) return;
-  if (selectedTheme !== "codeVibes" && player === "draw") return;
+  winnerIconContainer.innerHTML = "";
+  if (selectedTheme !== "codeVibes" || player === "draw") return;
   const confettiImg = window.innerWidth <= 1440 ? "confetti.svg" : "confetti_wide.svg";
   winnerIconContainer.innerHTML = `<img src="/memory/assets/icons/${confettiImg}" alt="">`;
 }

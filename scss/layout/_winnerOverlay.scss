@@ -1,3 +1,23 @@
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 .game__winner {
     display: none;
     position: fixed;
@@ -8,8 +28,17 @@
     justify-content: center;
     align-items: center;
     background-color: #303131;
+    z-index: 11;
     &.active {
         display: flex;
+    }
+
+    &.theme--codeVibes.active {
+        animation: slideFromTop 0.6s ease-out both;
+    }
+
+    &.theme--games.active {
+        animation: slideFromBottom 0.6s ease-out both;
     }
 
     &--homebtn {

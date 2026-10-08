@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     background-color: #303131;
+    z-index: 10;
     &.active {
         display: flex;
     }

@@ -3,7 +3,7 @@ import { renderStartscreenLayout } from "../templates/startscreenLayout";
 import { renderSettingsLayout } from "../templates/settingsLayout";
 import { renderGameLayout } from "../templates/gameLayout";
 
-import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme, checkStartButton} from "./settings";
+import { getGameThemeImage, setDefaultImg, getPlayerSelection, getBoardSelection, getThemeSelection, getSelectedTheme, loadSettings, clearSettings} from "./settings";
 import { flippAnimation, setCurrentPlayerImage, initializeCurrentPlayer, setPlayerScoreImages, setPlayerTexts, resetGameStatus } from "./game";
 import { getExitOverlays, getGameOverOverlay, getWinnerOverlay } from "../templates/exitOverlays";
 import { createBoard } from "./gameBoard";
@@ -50,11 +50,10 @@ export function showSettings() {
   renderInMain(renderSettingsLayout());
   attachSettingsListeners();
   getGameThemeImage();
-  setDefaultImg();
-  checkStartButton();
   getPlayerSelection();
   getBoardSelection();
   getThemeSelection();
+  loadSettings()
 }
 
 /**
@@ -115,13 +114,16 @@ function attachSettingsListeners() {
 }
 
 /**
- * Adds the event listener for returning to the startscreen
- * from the winner overlay.
+ * Adds a click listener to the winner overlay home button.
+ * Clears saved settings and returns to the start screen.
  */
 function attachWinnerOverlayListeners() {
   const homeBtn = document.querySelector(".game__winner--homebtn");
   if (homeBtn) {
-    homeBtn.addEventListener("click", showStartscreen);
+    homeBtn.addEventListener("click", () => {
+      clearSettings();
+      showStartscreen();
+    });
   }
 }
 
@@ -131,17 +133,19 @@ function attachWinnerOverlayListeners() {
  */
 function addOverlays() {
   const selectedTheme = getSelectedTheme();
-  const overlayContainer = document.querySelector(".game__exitoverlay--container");
-  if (overlayContainer) {
-    overlayContainer.innerHTML = getExitOverlays(selectedTheme);
-  }
-  const gameOverOverlayContainer = document.querySelector(".game__gameover--container");
-  if (gameOverOverlayContainer) {
-    gameOverOverlayContainer.innerHTML = getGameOverOverlay(selectedTheme);
-  }
-  const winnerOverlayContainer = document.querySelector(".game__winner--container");
-  if (winnerOverlayContainer) {
-    winnerOverlayContainer.innerHTML = getWinnerOverlay(selectedTheme);
-  }
+  insertOverlay(".game__exitoverlay--container", getExitOverlays(selectedTheme));
+  insertOverlay(".game__gameover--container", getGameOverOverlay(selectedTheme));
+  insertOverlay(".game__winner--container", getWinnerOverlay(selectedTheme));
   attachWinnerOverlayListeners();
+}
+
+/**
+ * Inserts an HTML overlay into the specified container.
+ * @param selector The CSS selector of the overlay container.
+ * @param html The HTML content to insert.
+ */
+function insertOverlay(selector: string, html: string) {
+  const container = document.querySelector(selector);
+  if (!container) return;
+  container.innerHTML = html;
 }
